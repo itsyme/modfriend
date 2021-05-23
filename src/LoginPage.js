@@ -1,3 +1,6 @@
+
+import logo from './modfriend.png';
+
 function LoginPage() {
     return (
         <div>

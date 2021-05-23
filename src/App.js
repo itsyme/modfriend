@@ -1,11 +1,16 @@
-import logo from './logo.svg';
+import React, { Fragment } from "react";
 import './App.css';
 
-import LoginPage from "./LoginPage.js"
+import LoginPage from "./LoginPage.js";
+import Taskbar from "./Taskbar.js";
 
 function App() {
   return (
-    <LoginPage />
+    <React.Fragment>
+      <Taskbar />
+      <LoginPage />
+    </React.Fragment>
+    
   );
 }
 
