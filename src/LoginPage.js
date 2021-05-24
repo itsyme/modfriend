@@ -4,6 +4,10 @@ import logo from './modfriend.png';
 function LoginPage() {
     return (
         <div>
+          <center>
+          <img src = {logo} alt = "modFriend logo" 
+          height = "200" width = "200">
+          </img>
         <h1>
           Welcome to modFriend!
         </h1>
@@ -34,6 +38,7 @@ function LoginPage() {
             Click here!
         </button>
         </p>
+        </center>
     </div>
     )
 }
