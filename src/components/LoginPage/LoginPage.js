@@ -1,5 +1,5 @@
 
-import logo from './modfriend.png';
+import logo from '../../modfriend.png';
 
 function LoginPage() {
     return (

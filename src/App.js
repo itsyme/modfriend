@@ -1,15 +1,16 @@
 import React from "react";
 import './App.css';
 
-import LoginPage from "./LoginPage.js";
-import Taskbar from "./Taskbar.js";
+import LoginPage from "./components/LoginPage/LoginPage";
+import AppShell from "./components/AppShell/AppShell";
 
 function App() {
   return (
-    <React.Fragment>
-      <Taskbar />
+    <>
+      <AppShell />
+      <p />
       <LoginPage />
-    </React.Fragment>
+    </>
     
   );
 }
