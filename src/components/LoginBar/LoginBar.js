@@ -1,7 +1,7 @@
 
 import logo from '../../modfriend.png';
 
-function LoginPage() {
+function LoginBar() {
     return (
         <div>
           <center>
@@ -13,7 +13,7 @@ function LoginPage() {
         </h1>
         <p>
           <h2>
-            Login
+            Please login to continue
           </h2>
         </p>
         <p>
@@ -42,4 +42,4 @@ function LoginPage() {
     </div>
     )
 }
-export default LoginPage;
+export default LoginBar;
