@@ -1,5 +1,9 @@
 
 import logo from '../../modfriend.png';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Box, Button, Paper, TextField } from '@material-ui/core';
+import styles from "./LoginBar.module.css";
 
 function LoginBar() {
     return (
@@ -13,31 +17,33 @@ function LoginBar() {
         </h1>
         <p>
           <h2>
-            Please login to continue
+            Please login or sign up to continue
           </h2>
         </p>
-        <p>
-          <form>
-            Username:
-            <input type = "text">
-            </input>
-          <p>
-            Password:
-            <input type = "text">
-            </input>
-          </p>
-            <button>
-              Submit
-            </button>
-
+        <Box display = 'inline-block'>
+          <Paper elevation = {3}>
+          <form className = {styles.loginForm}>
+          <TextField id="standard-basic" label="Username"/>
+          <TextField id="standard-basic" label="Password"/>
+            <Button variant = "contained" style = {{background: "#4952ff", color: "white"}}>
+              Login
+            </Button>
+          
           </form>
+          </Paper>
+        </Box>
+        <p className = {styles.NUSLogin}>
+        Log in with NUS:
+        <Button variant = 'contained' style = {{background: "#4952ff", color: "white"}}>
+            Click here!
+        </Button>
         </p>
         <p>
-        Log in with NUS:
-        <button>
-            Click here!
-        </button>
+          <Link to="../../pages/PageRegister">
+           Sign up!
+          </Link>
         </p>
+        
         </center>
     </div>
     )
