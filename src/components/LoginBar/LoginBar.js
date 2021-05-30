@@ -39,9 +39,9 @@ function LoginBar() {
         </Button>
         </p>
         <p>
-          <Link to="/Register">
+          <Button component = {Link} to="/Register">
            Sign up!
-          </Link>
+          </Button>
         </p>
         
         </center>

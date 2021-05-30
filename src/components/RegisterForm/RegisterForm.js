@@ -7,6 +7,11 @@ import styles from "./RegisterForm.module.css";
 function RegisterForm() {
     return (
         <div>
+            <Box className = {styles.backButton}>
+                <Button component = {Link} to = '/'>
+                    Back to Login
+                </Button>
+            </Box>  
           <center>
           <img src = {logo} alt = "modFriend logo" 
           height = "200" width = "200">

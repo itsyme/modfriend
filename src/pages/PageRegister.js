@@ -6,7 +6,7 @@ function PageRegister() {
         <>
 
         <AppShell />
-        <p />
+        
         <RegisterForm />
 
         

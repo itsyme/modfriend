@@ -4,8 +4,6 @@ import './App.css';
 import PageLogin from "./pages/PageLogin"
 import PageRegister from "./pages/PageRegister";
 
-
-
 function App() {
   return (
     <>
