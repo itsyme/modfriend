@@ -23,7 +23,7 @@ function LoginBar() {
         <Box display = 'inline-block'>
           <Paper elevation = {3}>
           <form className = {styles.loginForm}>
-          <TextField id="standard-basic" label="Username"/>
+          <TextField id="standard-basic" label="E-mail"/>
           <TextField id="standard-basic" label="Password"/>
             <Button variant = "contained" style = {{background: "#4952ff", color: "white"}}>
               Login
@@ -39,7 +39,7 @@ function LoginBar() {
         </Button>
         </p>
         <p>
-          <Link to="../../pages/PageRegister">
+          <Link to="/Register">
            Sign up!
           </Link>
         </p>
