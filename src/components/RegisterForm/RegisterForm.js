@@ -28,8 +28,9 @@ function RegisterForm() {
           <p />
           <TextField required id="standard-required" label="Re-enter Password"/>
           <p />
-            <Button variant = "contained" style = {{background: "#4952ff", color: "white"}}>
-              Next
+            <Button variant = "contained" style = {{background: "#4952ff", color: "white"}}
+            component = {Link} to = '/ProfileCreation'>
+              Submit
             </Button>
           
           </form>
