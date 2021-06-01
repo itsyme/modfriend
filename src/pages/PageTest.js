@@ -6,6 +6,7 @@ function PageTest() {
         <>
         <AppShell />
         <p />
+        hello
         <LoginBar />
         </>
     )
