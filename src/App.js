@@ -6,21 +6,22 @@ import PageRegister from "./pages/PageRegister";
 import PageMyProfile from "./pages/PageMyProfile";
 import PageProfileCreation from "./pages/PageProfileCreation";
 import PageModSelect from "./pages/PageModSelect";
+import RegisterForm from "./components/RegisterForm";
+import { AuthProvider } from './contexts/AuthContext';
 
 function App() {
   return (
     <>
     <BrowserRouter>
-    <Switch>
-    <Route exact path="/" component = {PageLogin}/>
-    <Route exact path="/Register" component = {PageRegister} />
-    <Route exact path = "/MyProfile" component = {PageMyProfile} />
-    <Route exact path = "/ProfileCreation" component = {PageProfileCreation} />
-    <Route exact path = "/ModSelect" component = {PageModSelect} />
-    </Switch>
-    </BrowserRouter>
+        <Switch>
+          <Route exact path="/" component={PageLogin} />
+          <Route exact path="/Register" component={PageRegister} />
+          <Route exact path="/MyProfile" component={PageMyProfile} />
+          <Route exact path="/ProfileCreation" component={PageProfileCreation} />
+          <Route exact path="/ModSelect" component={PageModSelect} />
+        </Switch>
+      </BrowserRouter>
     </>
-    
   );
 }
 

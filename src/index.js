@@ -11,11 +11,12 @@ import "@firebase/auth";
 import { config } from "./config/firebase";
 
 
+
 ReactDOM.render(
   <React.StrictMode>
     <FirebaseAuthProvider {...config} firebase={firebase}>
     <App />
-    </FirebaseAuthProvider>
+     </FirebaseAuthProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
