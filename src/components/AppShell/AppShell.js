@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -89,7 +90,7 @@ function AppShell() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>
+      <MenuItem onClick={handleMenuClose} component = { Link } to="/MyProfile">
         My Profile
         </MenuItem>
       <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
@@ -155,12 +156,12 @@ function AppShell() {
           
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            <IconButton aria-label="show mails" color="inherit">
+            <IconButton aria-label="show mails" color="inherit" component = { Link } to = "/Chat">
               <Badge badgeContent={0} color="secondary">
                 <MailIcon />
               </Badge>
             </IconButton>
-            <IconButton aria-label="show notifications" color="inherit">
+            <IconButton aria-label="show notifications" color="inherit" component = { Link }to = "/Notifications">
               <Badge badgeContent={0} color="secondary">
                 <NotificationsIcon />
               </Badge>
@@ -172,6 +173,7 @@ function AppShell() {
               aria-haspopup="true"
               onClick={handleProfileMenuOpen}
               color="inherit"
+              to = "/MyProfile"
             >
               <AccountCircle />
             </IconButton>
