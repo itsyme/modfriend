@@ -1,6 +1,7 @@
 import firebase from "firebase";
+//import firebaseui from "firebaseui";
 
-export const config = {
+var firebaseConfig = {
     apiKey: "AIzaSyA-jz1kUQWoJujrWWzv6yXy2evzvrgNU3I",
     authDomain: "modfriend-4fed7.firebaseapp.com",
     projectId: "modfriend-4fed7",
@@ -18,7 +19,16 @@ export const config = {
     measurementId: "G-H81S106QGZ"
 };*/
 
-const myApp = firebase.initializeApp(config);
-export const auth = myApp.auth();
-//export const firestore = firebase.firestore();
+/*ui.start('#firebaseui-auth-container', {
+    signInOptions: [
+        provider = firebase.auth.EmailAuthProvider.PROVIDER_ID,
+        requireDisplayName = false
+    ],
+    // Other config options...
+  });*/
 
+const firebaseApp = firebase.initializeApp(firebaseConfig);
+const db = firebaseApp.firestore();
+const auth = firebaseApp.auth();
+export { auth };
+export default db;

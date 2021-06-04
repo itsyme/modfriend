@@ -5,32 +5,25 @@ import { Box, Button, Paper, TextField } from '@material-ui/core';
 import styles from "./RegisterForm.module.css";
 import { useAuth, AuthProvider } from '../../contexts/AuthContext';
 
-//import { createUserWithEmailAndPassword } from 'firebase/auth';
+//import { firebase } from '@firebase/app';
+import firebase from 'firebase';
+import { auth } from '../../config/firebase';
+
 
 function RegisterForm() {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
-  const emailRef = useRef();
-  const passwordRef = useRef();
-  const history = useHistory();
-  const signup = useAuth();
+  const emailRef = useRef(null);
+const passwordRef = useRef(null);
 
-  const handleRegistration = (e) => {
+  const signUp = e => {
     e.preventDefault();
-    setError('');
-    setLoading(true);
-    const email = emailRef.current.value;
-    const password = passwordRef.current.value;
-    signup(email, password)
-      .then((ref) => {
-        setLoading(false);
-        history.push('/');
-      })
-      .catch((err) => {
-        setError(err.message);
-        setLoading(false);
-      });
-  };
+    auth.createUserWithEmailAndPassword(
+    emailRef.current.value, passwordRef.current.value
+    ).then(user => {
+    console.log(user)
+    }).catch(err => {
+    console.log(err)
+    })
+    }
 
   return (
     <div>
@@ -51,16 +44,17 @@ function RegisterForm() {
             <form className={styles.registerForm}>
               <TextField
                 required id="standard-required"
-                label="Email"
+                label = "email"
+                input ref={emailRef} type="email"
                 />
               <p />
-              <TextField required id="standard-required" label="Password" inputRef={emailRef}
+              <TextField required id="standard-required" label = "password" input ref={passwordRef} type="password" 
                 />
               <p />
-              <TextField required id="standard-required" label="Re-enter Password" inputRef={passwordRef}/>
+              <TextField required id="standard-required" label="Re-enter Password"/>
               <p />
               <Button variant="contained" style={{ background: "#4952ff", color: "white" }}
-                onSubmit={(e) => handleRegistration(e)}
+                onSubmit={signUp}
                 component={Link} to='/ProfileCreation'>
                 Submit
               </Button>
