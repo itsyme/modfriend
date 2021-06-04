@@ -1,13 +1,4 @@
-import firebase from "firebase";
 
-export const config = {
-    apiKey: "AIzaSyA-jz1kUQWoJujrWWzv6yXy2evzvrgNU3I",
-    authDomain: "modfriend-4fed7.firebaseapp.com",
-    projectId: "modfriend-4fed7",
-    storageBucket: "modfriend-4fed7.appspot.com",
-    messagingSenderId: "621115199306",
-    appId: "1:621115199306:web:bfd4b6244f89cc45ed7bb3"
-};
 /*export const config = {
     apiKey: "AIzaSyCP9UzyrGU50s3--lTdmTzYTFne5_OKc8Q",
     authDomain: "modfriend-45039.firebaseapp.com",
@@ -18,7 +9,19 @@ export const config = {
     measurementId: "G-H81S106QGZ"
 };*/
 
-const myApp = firebase.initializeApp(config);
-export const auth = myApp.auth();
-//export const firestore = firebase.firestore();
 
+import firebase from 'firebase/app'
+import 'firebase/auth'
+
+const app = firebase.initializeApp({
+  apiKey: process.env.REACT_APP_API_KEY,
+  authDomain: process.env.REACT_APP_AUTHDOMAIN,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGEBUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_APP_ID,
+});
+
+export const auth = app.auth()
+
+export default app
