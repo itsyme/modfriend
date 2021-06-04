@@ -13,7 +13,7 @@ function ProfileCreationForm() {
           height = "200" width = "200">
           </img>
         <h1>
-          Your Profile
+          Create Your Profile
         </h1>
         <Box display = "inline-block">
           <Paper elevation = {3}>
