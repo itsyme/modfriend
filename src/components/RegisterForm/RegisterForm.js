@@ -36,6 +36,7 @@ export default function RegisterForm() {
     } 
 
     setLoading(false)
+    
   }
 
   return (
