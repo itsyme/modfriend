@@ -6,7 +6,9 @@ import PageRegister from "./pages/PageRegister";
 import PageMyProfile from "./pages/PageMyProfile";
 import PageProfileCreation from "./pages/PageProfileCreation";
 import PageModSelect from "./pages/PageModSelect";
-import {AuthProvider} from './contexts/AuthContext'
+import PageNotifications from "./pages/PageNotifications";
+import PageChat from "./pages/PageChat";
+import {AuthProvider} from './contexts/AuthContext';
 //import RegisterForm from './components/RegisterForm'
 
 function App() {
