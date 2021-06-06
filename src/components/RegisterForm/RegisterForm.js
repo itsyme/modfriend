@@ -24,14 +24,11 @@ export default function RegisterForm() {
       return setError("Passwords do not match")
     } 
 
-    /*try {
+    try {
       setError("")
       setLoading(true)
       await signup(emailRef.current.value, passwordRef.current.value)
-    } catch {
-      setError("Failed to create an account")
-    }*/
-
+    }
     setLoading(false)
   }
 
@@ -57,19 +54,19 @@ export default function RegisterForm() {
                 required id="standard-required"
                 label="Email"
                 type="email"
-                ref={emailRef} required
+                inputRef={emailRef} required
               />
               <p />
               <TextField required id="standard-required"
                 label="Password"
                 type="password"
-                ref={passwordRef} required
+                inputRef={passwordRef} required
               />
               <p />
               <TextField required id="standard-required"
                 label="Re-enter Password"
                 type="password"
-                ref={passwordConfirmRef} required
+                inputRef={passwordConfirmRef} required
               />
               <p />
               <Button variant="contained" style={{ background: "#4952ff", color: "white" }}
