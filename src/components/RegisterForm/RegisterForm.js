@@ -29,7 +29,7 @@ export default function RegisterForm() {
       setLoading(true)
       await signup(emailRef.current.value, passwordRef.current.value)
     } catch {
-      setError("Email already in use")
+      setError("Email already in use or Password shorter than 6 characters")
     } 
 
     setLoading(false)
