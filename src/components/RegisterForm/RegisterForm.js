@@ -28,7 +28,10 @@ export default function RegisterForm() {
       setError("")
       setLoading(true)
       await signup(emailRef.current.value, passwordRef.current.value)
+    } catch {
+      setError("Failed to create an account")
     }
+
     setLoading(false)
   }
 
