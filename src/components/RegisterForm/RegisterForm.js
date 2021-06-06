@@ -1,29 +1,42 @@
 import logo from '../../modfriend.png';
-import React, { useRef, useState } from 'react';
+import React, { useContext, useState, useRef } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { Box, Button, Paper, TextField } from '@material-ui/core';
+import { Alert } from '@material-ui/lab';
 import styles from "./RegisterForm.module.css";
-import { useAuth, AuthProvider } from '../../contexts/AuthContext';
+import { useAuth } from '../../contexts/AuthContext'
+//import { AuthProvider } from '../../contexts/AuthProvider';
 
 //import { firebase } from '@firebase/app';
 import firebase from 'firebase';
 import { auth } from '../../config/firebase';
 
 
-function RegisterForm() {
-  const emailRef = useRef(null);
-const passwordRef = useRef(null);
+export default function RegisterForm() {
+  const emailRef = useRef()
+  const passwordRef = useRef()
+  const passwordConfirmRef = useRef()
+  const { signup } = useAuth()
+  const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
 
-  const signUp = e => {
-    e.preventDefault();
-    auth.createUserWithEmailAndPassword(
-    emailRef.current.value, passwordRef.current.value
-    ).then(user => {
-    console.log(user)
-    }).catch(err => {
-    console.log(err)
-    })
-    }
+  async function handleSubmit(e) {
+    e.preventDefault()
+
+    if (passwordRef.current.value !== passwordConfirmRef.current.value) {
+      return setError("Passwords do not match");
+    } 
+
+    try {
+      setError("")
+      setLoading(true)
+      await signup(emailRef.current.value, passwordRef.current.value)
+    } catch {
+      setError("Email already in use or Password shorter than 6 characters")
+    } 
+
+    setLoading(false)
+  }
 
   return (
     <div>
@@ -41,21 +54,32 @@ const passwordRef = useRef(null);
           </h1>
         <Box display="inline-block">
           <Paper elevation={3}>
-            <form className={styles.registerForm}>
+            <form className={styles.registerForm} onSubmit={handleSubmit}>
+              {error && <Alert severity="error">{error}</Alert>}
               <TextField
                 required id="standard-required"
-                label = "email"
-                input ref={emailRef} type="email"
-                />
+                label="Email"
+                type="email"
+                inputRef={emailRef} required
+              />
               <p />
-              <TextField required id="standard-required" label = "password" input ref={passwordRef} type="password" 
-                />
+              <TextField required id="standard-required"
+                label="Password"
+                type="password"
+                inputRef={passwordRef} required
+              />
               <p />
-              <TextField required id="standard-required" label="Re-enter Password"/>
+              <TextField required id="standard-required"
+                label="Re-enter Password"
+                type="password"
+                inputRef={passwordConfirmRef} required
+              />
               <p />
               <Button variant="contained" style={{ background: "#4952ff", color: "white" }}
-                onSubmit={signUp}
-                component={Link} to='/ProfileCreation'>
+                type="submit"
+                disabled={loading}
+              //component={Link} to='/ProfileCreation'
+              >
                 Submit
               </Button>
 
@@ -66,7 +90,3 @@ const passwordRef = useRef(null);
     </div>
   );
 }
-
-
-
-export default RegisterForm;

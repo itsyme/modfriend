@@ -3,14 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { FirebaseAuthProvider } from "@react-firebase/auth";
-
-import { firebase } from "@firebase/app";
-import "@firebase/auth";
-import "@firebase/firestore";
-
-//import { config } from "./config/firebase";
-
+import AuthProvider from './contexts/AuthContext'
+import {BrowserRouter} from 'react-router-dom'
 
 
 ReactDOM.render(

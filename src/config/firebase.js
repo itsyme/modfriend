@@ -1,15 +1,7 @@
-import firebase from "firebase";
-//import firebaseui from "firebaseui";
+import firebase from 'firebase/app'
+import 'firebase/auth'
 
-var firebaseConfig = {
-    apiKey: "AIzaSyA-jz1kUQWoJujrWWzv6yXy2evzvrgNU3I",
-    authDomain: "modfriend-4fed7.firebaseapp.com",
-    projectId: "modfriend-4fed7",
-    storageBucket: "modfriend-4fed7.appspot.com",
-    messagingSenderId: "621115199306",
-    appId: "1:621115199306:web:bfd4b6244f89cc45ed7bb3"
-};
-/*export const config = {
+export const app = firebase.initializeApp({
     apiKey: "AIzaSyCP9UzyrGU50s3--lTdmTzYTFne5_OKc8Q",
     authDomain: "modfriend-45039.firebaseapp.com",
     projectId: "modfriend-45039",
@@ -17,18 +9,20 @@ var firebaseConfig = {
     messagingSenderId: "821933252971",
     appId: "1:821933252971:web:dadd79001ad88f38f5ac2e",
     measurementId: "G-H81S106QGZ"
-};*/
+});
 
-/*ui.start('#firebaseui-auth-container', {
-    signInOptions: [
-        provider = firebase.auth.EmailAuthProvider.PROVIDER_ID,
-        requireDisplayName = false
-    ],
-    // Other config options...
-  });*/
 
-const firebaseApp = firebase.initializeApp(firebaseConfig);
-const db = firebaseApp.firestore();
-const auth = firebaseApp.auth();
-export { auth };
-export default db;
+
+
+/*const app = firebase.initializeApp({
+  apiKey: process.env.REACT_APP_API_KEY,
+  authDomain: process.env.REACT_APP_AUTHDOMAIN,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGEBUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_APP_ID,
+});*/
+
+export const auth = app.auth()
+
+export default app
