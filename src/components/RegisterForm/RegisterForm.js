@@ -21,7 +21,7 @@ export default function RegisterForm() {
   const [loading, setLoading] = useState(false)
 
   async function handleSubmit(e) {
-    e.preventDefault()
+    //e.preventDefault()
 
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
       return setError("Passwords do not match");
@@ -55,7 +55,7 @@ export default function RegisterForm() {
           </h1>
         <Box display="inline-block">
           <Paper elevation={3}>
-            <form className={styles.registerForm} onSubmit={handleSubmit}>
+            <form className={styles.registerForm} onSubmit={handleSubmit} action="/ProfileCreation">
               {error && <Alert severity="error">{error}</Alert>}
               <TextField
                 required id="standard-required"

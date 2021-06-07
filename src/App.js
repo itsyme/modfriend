@@ -8,8 +8,9 @@ import PageProfileCreation from "./pages/PageProfileCreation";
 import PageModSelect from "./pages/PageModSelect";
 import PageNotifications from "./pages/PageNotifications";
 import PageChat from "./pages/PageChat";
+import PageMatch from "./pages/PageMatch";
 import {AuthProvider} from './contexts/AuthContext';
-//import RegisterForm from './components/RegisterForm'
+
 
 function App() {
 
@@ -26,6 +27,7 @@ function App() {
           <Route exact path="/ModSelect" component={PageModSelect} />
           <Route exact path="/Notifications" component={PageNotifications} />
           <Route exact path="/Chat" component={PageChat} />
+          <Route exact path="/Home" component={PageMatch} />
         </Switch>
         </AuthProvider>
       </BrowserRouter>
