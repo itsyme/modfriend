@@ -1,10 +1,36 @@
 import logo from '../../modfriend.png';
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useRef, useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import { Box, Button, FormControl, InputLabel, Select, MenuItem, Paper, TextField } from '@material-ui/core';
 import styles from "./ProfileCreationForm.module.css";
+import { NewUser } from '../../contexts/UserContext'
 
-function ProfileCreationForm() {
+import firebase from 'firebase';
+
+export default function ProfileCreationForm() {
+  const nameRef = useRef()
+  const facultyRef = useRef()
+  const history = useHistory();
+  const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
+  const { addName } = NewUser()
+
+  async function createProfile(e) {
+    e.preventDefault()
+
+    try {
+      setError("")
+      setLoading(true)
+      await addName(nameRef.current.value)
+    } catch {
+      setError("profile not created")
+    } 
+
+    setLoading(false)
+    history.push("/ModSelect")
+  
+  }
+
     return (
         <div>
             <p />
@@ -17,8 +43,13 @@ function ProfileCreationForm() {
         </h1>
         <Box display = "inline-block">
           <Paper elevation = {3}>
-          <form className = {styles.profileCreationForm}>
-          <TextField required id="standard-required" label="Name"/>
+          <form className = {styles.profileCreationForm} onSubmit={createProfile}>
+          <TextField 
+          required id="standard-required" 
+          label="Name"
+          type="text"
+          inputRef={nameRef} required
+          />
           <p />
           <FormControl>
         <InputLabel>Year</InputLabel>
@@ -50,7 +81,8 @@ function ProfileCreationForm() {
           <TextField required id="standard-required" label="Re-enter Password"/>
           <p />
             <Button variant = "contained" style = {{background: "#4952ff", color: "white"}}
-            component = {Link} to = '/ModSelect'>
+            type="submit"
+            >
               Next
             </Button>
           
@@ -61,5 +93,3 @@ function ProfileCreationForm() {
         </div>
     )
 }
-
-export default ProfileCreationForm;

@@ -9,6 +9,7 @@ import PageModSelect from "./pages/PageModSelect";
 import PageNotifications from "./pages/PageNotifications";
 import PageChat from "./pages/PageChat";
 import {AuthProvider} from './contexts/AuthContext';
+import { UserProvider } from "./contexts/UserContext";
 //import RegisterForm from './components/RegisterForm'
 
 function App() {
