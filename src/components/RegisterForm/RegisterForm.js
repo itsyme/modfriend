@@ -7,7 +7,10 @@ import styles from "./RegisterForm.module.css";
 import { useAuth } from '../../contexts/AuthContext'
 //import { AuthProvider } from '../../contexts/AuthProvider';
 
-//import { createUserWithEmailAndPassword } from 'firebase/auth';
+//import { firebase } from '@firebase/app';
+import firebase from 'firebase';
+import { auth } from '../../config/firebase';
+
 
 export default function RegisterForm() {
   const emailRef = useRef()
@@ -21,7 +24,7 @@ export default function RegisterForm() {
     e.preventDefault()
 
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
-      return setError("Passwords do not match")
+      return setError("Passwords do not match");
     } 
 
     try {
@@ -29,10 +32,11 @@ export default function RegisterForm() {
       setLoading(true)
       await signup(emailRef.current.value, passwordRef.current.value)
     } catch {
-      setError("Failed to create an account")
-    }
+      setError("Email already in use or Password shorter than 6 characters")
+    } 
 
     setLoading(false)
+    
   }
 
   return (
