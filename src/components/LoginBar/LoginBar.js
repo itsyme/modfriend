@@ -15,13 +15,14 @@ export default function Login() {
   const [loading, setLoading] = useState(false)
 
   async function handleSubmit(e) {
-    //e.preventDefault()
+  e.preventDefault()
 
     try {
       setError("")
       setLoading(true)
       await login(emailRef.current.value, passwordRef.current.value)
     } catch {
+      e.preventDefault();
       setError("Failed to log in")
     }
 
@@ -48,7 +49,7 @@ export default function Login() {
           <Paper elevation = {3}>
           <form className = {styles.loginForm} 
           onSubmit={handleSubmit}
-          action="/Home"
+          //action="/Home"
           >
           <TextField 
           id="standard-basic" 

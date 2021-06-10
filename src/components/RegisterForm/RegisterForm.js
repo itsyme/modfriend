@@ -21,21 +21,29 @@ export default function RegisterForm() {
   const [loading, setLoading] = useState(false)
 
   async function handleSubmit(e) {
-    //e.preventDefault()
+    e.preventDefault()
 
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
+      
       return setError("Passwords do not match");
     } 
+
+    if (passwordRef.current.value.length < 6) {
+      
+      return setError("Password shorter than 6 characters");
+    }
 
     try {
       setError("")
       setLoading(true)
       await signup(emailRef.current.value, passwordRef.current.value)
     } catch {
-      setError("Email already in use or Password shorter than 6 characters")
+      
+      setError("Email already in use")
     } 
 
     setLoading(false)
+    return true;
     
   }
 
@@ -55,22 +63,27 @@ export default function RegisterForm() {
           </h1>
         <Box display="inline-block">
           <Paper elevation={3}>
-            <form className={styles.registerForm} onSubmit={handleSubmit} action="/ProfileCreation">
+            <form className={styles.registerForm} 
+            onSubmit={handleSubmit} 
+            action="/ProfileCreation"
+            >
               {error && <Alert severity="error">{error}</Alert>}
               <TextField
-                required id="standard-required"
+                id="email-required"
                 label="Email"
                 type="email"
                 inputRef={emailRef} required
               />
               <p />
-              <TextField required id="standard-required"
+              <TextField 
+                id="password-required"
                 label="Password"
                 type="password"
                 inputRef={passwordRef} required
               />
               <p />
-              <TextField required id="standard-required"
+              <TextField 
+                id="repassword-required"
                 label="Re-enter Password"
                 type="password"
                 inputRef={passwordConfirmRef} required
@@ -79,7 +92,6 @@ export default function RegisterForm() {
               <Button variant="contained" style={{ background: "#4952ff", color: "white" }}
                 type="submit"
                 disabled={loading}
-              //component={Link} to='/ProfileCreation'
               >
                 Submit
               </Button>
