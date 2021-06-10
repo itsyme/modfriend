@@ -118,7 +118,7 @@ function AppShell() {
       </MenuItem>
       <MenuItem>
         <IconButton aria-label="show new notifications" color="inherit">
-          <Badge badgeContent={1} color="secondary">
+          <Badge badgeContent={0} color="secondary">
             <NotificationsIcon />
           </Badge>
         </IconButton>
@@ -138,6 +138,11 @@ function AppShell() {
     </Menu>
   );
 
+  const loginAlert = (e) => {
+    e.preventDefault();
+    alert("Please login to continue!");
+}
+
   return (
     <div className={classes.grow}>
       <AppBar position="static" style = {{background: "#4952ff"}}>
@@ -147,8 +152,7 @@ function AppShell() {
             className={classes.menuButton}
             color="inherit"
             aria-label="open drawer"
-            component = { Link }
-            to = "/Home"
+            onClick = {loginAlert}
           >
             <HomeIcon />
           </IconButton>
@@ -158,12 +162,12 @@ function AppShell() {
           
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            <IconButton aria-label="show mails" color="inherit" component = { Link } to = "/Chat">
-              <Badge badgeContent={0} color="secondary">
+            <IconButton aria-label="show mails" color="inherit" onClick={loginAlert}>
+              <Badge badgeContent={1} color="secondary">
                 <MailIcon />
               </Badge>
             </IconButton>
-            <IconButton aria-label="show notifications" color="inherit" component = { Link }to = "/Notifications">
+            <IconButton aria-label="show notifications" color="inherit" onClick={loginAlert}>
               <Badge badgeContent={0} color="secondary">
                 <NotificationsIcon />
               </Badge>
@@ -173,9 +177,8 @@ function AppShell() {
               aria-label="account of current user"
               aria-controls={menuId}
               aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
+              onClick={loginAlert}
               color="inherit"
-              to = "/MyProfile"
             >
               <AccountCircle />
             </IconButton>

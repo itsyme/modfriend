@@ -4,7 +4,7 @@ import MyProfile from "../components/MyProfile/MyProfile";
 function PageMyProfile() {
     return (
         <>
-        <AppShell />
+        
         <MyProfile />
         </>
 

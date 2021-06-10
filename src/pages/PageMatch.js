@@ -4,7 +4,7 @@ import Matching from "../components/Matching/Matching";
 function PageMatch() {
     return (
         <>
-        <AppShell />
+       
         <p />
         <Matching />
         </>

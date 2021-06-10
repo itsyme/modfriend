@@ -4,7 +4,7 @@ import LoginBar from "../components/LoginBar/LoginBar";
 function PageLogin() {
     return (
         <>
-        <AppShell />
+        
         <p />
         <LoginBar />
         </>

@@ -4,7 +4,7 @@ import ProfileCreationForm from '../components/ProfileCreationForm/ProfileCreati
 function PageProfileCreation() {
     return (
         <>
-        <AppShell />
+        
         <ProfileCreationForm />
         </>
 

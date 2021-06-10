@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import './App.css';
 import PageLogin from "./pages/PageLogin"
@@ -10,6 +10,9 @@ import PageNotifications from "./pages/PageNotifications";
 import PageChat from "./pages/PageChat";
 import PageMatch from "./pages/PageMatch";
 import {AuthProvider} from './contexts/AuthContext';
+import AppShell from "./components/AppShell/AppShell";
+import AppShellUnAuthed from './components/AppShellUnAuthed/AppShellUnAuthed';
+import { IfFirebaseAuthed, IfFirebaseUnAuthed } from "@react-firebase/auth";
 
 
 function App() {
@@ -17,8 +20,17 @@ function App() {
   return (
     <>
     
+    
     <BrowserRouter>
     <AuthProvider>
+      <IfFirebaseAuthed>
+        <AppShell />
+      </IfFirebaseAuthed>
+      <IfFirebaseUnAuthed>
+        <AppShellUnAuthed />
+      </IfFirebaseUnAuthed>
+
+    
         <Switch>
           <Route exact path="/" component={PageLogin} />
           <Route exact path="/Register" component={PageRegister} />
