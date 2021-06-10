@@ -12,21 +12,21 @@ export default function Login() {
   const passwordRef = useRef()
   const { login } = useAuth()
   const [error, setError] = useState("")
-  const [loading, setLoading] = useState(false)
+  //const [loading, setLoading] = useState(false)
 
   async function handleSubmit(e) {
   e.preventDefault()
 
     try {
       setError("")
-      setLoading(true)
+      //setLoading(true)
       await login(emailRef.current.value, passwordRef.current.value)
     } catch {
       e.preventDefault();
       setError("Failed to log in")
     }
 
-    setLoading(false)
+    //setLoading(false)
     //setError("no error")
   }
 
