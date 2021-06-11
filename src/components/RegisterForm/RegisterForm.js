@@ -5,6 +5,7 @@ import { Box, Button, Paper, TextField } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
 import styles from "./RegisterForm.module.css";
 import { useAuth } from '../../contexts/AuthContext'
+import { NewUser } from "../../contexts/UserContext"
 //import { AuthProvider } from '../../contexts/AuthProvider';
 
 //import { firebase } from '@firebase/app';
@@ -17,8 +18,18 @@ export default function RegisterForm() {
   const passwordRef = useRef()
   const passwordConfirmRef = useRef()
   const { signup } = useAuth()
+  const { addEmail } = NewUser()
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
+  const history = useHistory()
+
+  /*function updateEmail(e){
+    //e.preventDefault();
+    const db = firebase.firestore();
+    const userRef = db.collection("emails").add({
+    email: emailRef.current.value
+    });  
+  }*/
 
   async function handleSubmit(e) {
     e.preventDefault()
@@ -36,14 +47,16 @@ export default function RegisterForm() {
     try {
       setError("")
       setLoading(true)
-      await signup(emailRef.current.value, passwordRef.current.value)
+      await signup(emailRef.current.value, passwordRef.current.value) && addEmail(emailRef.current.value)
     } catch {
       
       setError("Email already in use")
     } 
 
     setLoading(false)
+    history.push("/ProfileCreation")
     return true;
+    //updateEmail()
     
   }
 

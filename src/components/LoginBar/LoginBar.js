@@ -1,7 +1,7 @@
 
 import logo from '../../modfriend.png';
 import React, { useState, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { Box, Button, Paper, TextField } from '@material-ui/core';
 import styles from "./LoginBar.module.css";
 import { useAuth } from '../../contexts/AuthContext'
@@ -13,6 +13,8 @@ export default function Login() {
   const { login } = useAuth()
   const [error, setError] = useState("")
   //const [loading, setLoading] = useState(false)
+  const history = useHistory()
+
 
   async function handleSubmit(e) {
   e.preventDefault()
@@ -28,6 +30,7 @@ export default function Login() {
 
     //setLoading(false)
     //setError("no error")
+    history.push('/MyProfile')
   }
 
     return (

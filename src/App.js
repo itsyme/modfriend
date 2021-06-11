@@ -14,6 +14,8 @@ import AppShell from "./components/AppShell/AppShell";
 import AppShellUnAuthed from './components/AppShellUnAuthed/AppShellUnAuthed';
 import { IfFirebaseAuthed, IfFirebaseUnAuthed } from "@react-firebase/auth";
 
+import { UserProvider } from "./contexts/UserContext";
+//import RegisterForm from './components/RegisterForm'
 
 function App() {
 
