@@ -5,6 +5,7 @@ import { Box, Button, Paper, TextField } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
 import styles from "./RegisterForm.module.css";
 import { useAuth } from '../../contexts/AuthContext'
+import {useHistory} from 'react-router-dom';
 //import { AuthProvider } from '../../contexts/AuthProvider';
 
 //import { firebase } from '@firebase/app';
@@ -13,6 +14,7 @@ import { useAuth } from '../../contexts/AuthContext'
 
 
 export default function RegisterForm() {
+  const history = useHistory();
   const emailRef = useRef()
   const passwordRef = useRef()
   const passwordConfirmRef = useRef()
@@ -38,12 +40,11 @@ export default function RegisterForm() {
       setLoading(true)
       await signup(emailRef.current.value, passwordRef.current.value)
     } catch {
-      
-      setError("Email already in use")
+      return setError("Email already in use");
     } 
 
     setLoading(false)
-    return true;
+    history.push("/ProfileCreation")
     
   }
 
@@ -65,7 +66,6 @@ export default function RegisterForm() {
           <Paper elevation={3}>
             <form className={styles.registerForm} 
             onSubmit={handleSubmit} 
-            action="/ProfileCreation"
             >
               {error && <Alert severity="error">{error}</Alert>}
               <TextField

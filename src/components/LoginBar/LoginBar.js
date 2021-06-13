@@ -6,8 +6,10 @@ import { Box, Button, Paper, TextField } from '@material-ui/core';
 import styles from "./LoginBar.module.css";
 import { useAuth } from '../../contexts/AuthContext'
 import { Alert } from '@material-ui/lab';
+import { useHistory } from "react-router-dom";
 
 export default function Login() {
+  const history = useHistory();
   const emailRef = useRef()
   const passwordRef = useRef()
   const { login } = useAuth()
@@ -22,10 +24,13 @@ export default function Login() {
       //setLoading(true)
       await login(emailRef.current.value, passwordRef.current.value)
     } catch {
-      e.preventDefault();
-      setError("Failed to log in")
+      //e.preventDefault();
+      return setError("Failed to log in")
     }
 
+    console.log("successful login")
+    history.push("/Home")
+    
     //setLoading(false)
     //setError("no error")
   }
@@ -49,7 +54,7 @@ export default function Login() {
           <Paper elevation = {3}>
           <form className = {styles.loginForm} 
           onSubmit={handleSubmit}
-          //action="/Home"
+          action="/Home"
           >
           <TextField 
           id="standard-basic" 

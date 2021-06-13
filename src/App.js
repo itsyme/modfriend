@@ -11,9 +11,6 @@ import PageChat from "./pages/PageChat";
 import PageMatch from "./pages/PageMatch";
 import {AuthProvider} from './contexts/AuthContext';
 import AppShell from "./components/AppShell/AppShell";
-import AppShellUnAuthed from './components/AppShellUnAuthed/AppShellUnAuthed';
-import { IfFirebaseAuthed, IfFirebaseUnAuthed } from "@react-firebase/auth";
-
 
 function App() {
 
@@ -23,12 +20,7 @@ function App() {
     
     <BrowserRouter>
     <AuthProvider>
-      <IfFirebaseAuthed>
-        <AppShell />
-      </IfFirebaseAuthed>
-      <IfFirebaseUnAuthed>
-        <AppShellUnAuthed />
-      </IfFirebaseUnAuthed>
+    <AppShell />
 
     
         <Switch>
@@ -41,6 +33,7 @@ function App() {
           <Route exact path="/Chat" component={PageChat} />
           <Route exact path="/Home" component={PageMatch} />
         </Switch>
+        
         </AuthProvider>
       </BrowserRouter>
     </>

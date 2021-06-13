@@ -118,7 +118,7 @@ function AppShell() {
       </MenuItem>
       <MenuItem>
         <IconButton aria-label="show new notifications" color="inherit">
-          <Badge badgeContent={1} color="secondary">
+          <Badge badgeContent={0} color="secondary">
             <NotificationsIcon />
           </Badge>
         </IconButton>
