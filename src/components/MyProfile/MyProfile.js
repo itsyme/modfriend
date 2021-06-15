@@ -1,3 +1,6 @@
+import { Button } from '@material-ui/core';
+import {Link} from 'react-router-dom';
+
 function MyProfile() {
     return (
         <>
@@ -19,6 +22,13 @@ function MyProfile() {
         <h3>
             Status:
         </h3>
+        <Button 
+        style = {{background: "#4952ff", color: "white"}}
+        variant = "contained"
+        component = {Link} 
+        to = '/ProfileCreation'>
+            Edit Profile
+        </Button>
         </>
 
     )
