@@ -3,9 +3,6 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import AuthProvider from './contexts/AuthContext'
-import {BrowserRouter} from 'react-router-dom'
-import { UserProvider } from "./contexts/UserContext";
 
 
 ReactDOM.render(

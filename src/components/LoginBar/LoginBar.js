@@ -8,26 +8,31 @@ import { useAuth } from '../../contexts/AuthContext'
 import { Alert } from '@material-ui/lab';
 
 export default function Login() {
+  const history = useHistory();
   const emailRef = useRef()
   const passwordRef = useRef()
   const { login } = useAuth()
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)
-  const history = useHistory()
 
+  //const [loading, setLoading] = useState(false)
 
   async function handleSubmit(e) {
-    e.preventDefault()
+  e.preventDefault()
 
     try {
       setError("")
-      setLoading(true)
+      //setLoading(true)
       await login(emailRef.current.value, passwordRef.current.value)
     } catch {
-      setError("Failed to log in")
+      //e.preventDefault();
+      return setError("Failed to log in")
     }
 
-    setLoading(false)
+    console.log("successful login")
+    history.push("/Home")
+    
+    //setLoading(false)
     //setError("no error")
     history.push('/MyProfile')
   }
@@ -51,6 +56,7 @@ export default function Login() {
           <Paper elevation = {3}>
           <form className = {styles.loginForm} 
           onSubmit={handleSubmit}
+          action="/Home"
           >
           <TextField 
           id="standard-basic" 
@@ -79,7 +85,7 @@ export default function Login() {
         </Button>
         </p>
         <p>
-          <Button component = {Link} to="/Register">
+          <Button component = {Link} to="/ProfileCreation">
            Sign up!
           </Button>
         </p>

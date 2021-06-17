@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import './App.css';
 import PageLogin from "./pages/PageLogin"
@@ -8,17 +8,21 @@ import PageProfileCreation from "./pages/PageProfileCreation";
 import PageModSelect from "./pages/PageModSelect";
 import PageNotifications from "./pages/PageNotifications";
 import PageChat from "./pages/PageChat";
+import PageMatch from "./pages/PageMatch";
 import {AuthProvider} from './contexts/AuthContext';
-import { UserProvider } from "./contexts/UserContext";
-//import RegisterForm from './components/RegisterForm'
+import AppShell from "./components/AppShell/AppShell";
 
 function App() {
 
   return (
     <>
     
+    
     <BrowserRouter>
     <AuthProvider>
+    <AppShell />
+
+    
         <Switch>
           <Route exact path="/" component={PageLogin} />
           <Route exact path="/Register" component={PageRegister} />
@@ -27,7 +31,9 @@ function App() {
           <Route exact path="/ModSelect" component={PageModSelect} />
           <Route exact path="/Notifications" component={PageNotifications} />
           <Route exact path="/Chat" component={PageChat} />
+          <Route exact path="/Home" component={PageMatch} />
         </Switch>
+        
         </AuthProvider>
       </BrowserRouter>
     </>

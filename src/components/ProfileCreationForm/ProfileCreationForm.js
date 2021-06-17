@@ -13,7 +13,7 @@ export default function ProfileCreationForm() {
   const history = useHistory();
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
-  const { addName } = NewUser()
+  //const { addName } = NewUser()
 
   async function createProfile(e) {
     e.preventDefault()
@@ -21,7 +21,7 @@ export default function ProfileCreationForm() {
     try {
       setError("")
       setLoading(true)
-      await addName(nameRef.current.value)
+      //await addName(nameRef.current.value)
     } catch {
       setError("profile not created")
     } 
