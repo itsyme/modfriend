@@ -6,11 +6,6 @@ import { Alert } from '@material-ui/lab';
 import styles from "./RegisterForm.module.css";
 import { useAuth } from '../../contexts/AuthContext'
 import {useHistory} from 'react-router-dom';
-//import { AuthProvider } from '../../contexts/AuthProvider';
-
-//import { firebase } from '@firebase/app';
-//import firebase from 'firebase';
-//import { auth } from '../../config/firebase';
 
 
 export default function RegisterForm() {

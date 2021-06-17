@@ -11,6 +11,7 @@ import PageChat from "./pages/PageChat";
 import PageMatch from "./pages/PageMatch";
 import {AuthProvider} from './contexts/AuthContext';
 import AppShell from "./components/AppShell/AppShell";
+import PrivateRoute from './components/PrivateRoute';
 
 function App() {
 
