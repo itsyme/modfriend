@@ -85,7 +85,7 @@ export default function Login() {
         </Button>
         </p>
         <p>
-          <Button component = {Link} to="/ProfileCreation">
+          <Button component = {Link} to="/Register">
            Sign up!
           </Button>
         </p>

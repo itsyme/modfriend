@@ -3,12 +3,23 @@ import { Box, Button, Select, FormControl, InputLabel, MenuItem } from "@materia
 import styles from "./ModSelect.module.css";
 import { Link } from 'react-router-dom';
 
+import { firebase } from "@firebase/app"
+import { useEffect } from 'react';
+
 function ModSelect() {
     const modules = [
         'CS1010S',
         'CS1101',
         'MA1101R'
     ]
+        /*useEffect(() => {
+            const uid = firebase.auth().currentUser?.uid;
+            const db = firebase.firestore();
+            db.collection("users").doc(uid).update({ 
+                modules: modules
+            })
+        
+        })*/
 
     return (
         <div>
@@ -36,7 +47,11 @@ function ModSelect() {
 
               </Select>
           </FormControl>
-
+          <Button variant = "contained" style = {{background: "#4952ff", color: "white"}} 
+            type="submit">
+              Login
+            </Button>
+          
           </center>
         </div>
 

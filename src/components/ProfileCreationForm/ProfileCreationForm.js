@@ -3,9 +3,9 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { Box, Button, FormControl, InputLabel, Select, MenuItem, Paper, TextField } from '@material-ui/core';
 import styles from "./ProfileCreationForm.module.css";
-import { NewUser } from '../../contexts/UserContext'
+//import { NewUser } from '../../contexts/UserContext'
 
-import firebase from 'firebase';
+import { firebase } from "@firebase/app"
 
 export default function ProfileCreationForm() {
   const nameRef = useRef()
@@ -13,18 +13,26 @@ export default function ProfileCreationForm() {
   const history = useHistory();
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
+  const [user, setUser] = useState([])
   //const { addName } = NewUser()
 
-  async function createProfile(e) {
+  async function CreateProfile(e) {
     e.preventDefault()
 
     try {
       setError("")
       setLoading(true)
-      //await addName(nameRef.current.value)
+
     } catch {
       setError("profile not created")
     } 
+      const uid = firebase.auth().currentUser?.uid;
+      const db = firebase.firestore();
+      db.collection("users").doc(uid).set({ 
+      faculty: "computing",
+      name: nameRef.current.value,
+      modules: []
+       })
 
     setLoading(false)
     history.push("/ModSelect")
@@ -43,7 +51,7 @@ export default function ProfileCreationForm() {
         </h1>
         <Box display = "inline-block">
           <Paper elevation = {3}>
-          <form className = {styles.profileCreationForm} onSubmit={createProfile}>
+          <form className = {styles.profileCreationForm} onSubmit={CreateProfile}>
           <TextField 
           required id="standard-required" 
           label="Name"

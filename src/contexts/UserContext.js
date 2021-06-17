@@ -1,14 +1,14 @@
 import React, { useContext, useState, useEffect } from "react"
-import firebase from "firebase"
+import firebase from "@firebase/app"
 
 const UserContext = React.createContext()
-const db = firebase.firestore()
+//const db = firebase.firestore()
 
 export function NewUser() {
     return useContext(UserContext)
   }
 
-export function UserProvider({ children }) {
+/*export function UserProvider({ children }) {
     const [currentUser, setCurrentUser] = useState()
     const [loading, setLoading] = useState(true)
     const [email, setEmail] = useState()
@@ -42,6 +42,6 @@ export function UserProvider({ children }) {
         {!loading && children}
         </UserContext.Provider>
       );
-} 
+} */
 
 export default UserContext; 
