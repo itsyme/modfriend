@@ -6,6 +6,7 @@ import styles from "./ProfileCreationForm.module.css";
 import { NewUser } from '../../contexts/UserContext'
 
 import firebase from 'firebase';
+import { AddToQueueSharp } from '@material-ui/icons';
 
 export default function ProfileCreationForm() {
   const nameRef = useRef()
@@ -13,7 +14,8 @@ export default function ProfileCreationForm() {
   const history = useHistory();
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
-  const { addName } = NewUser()
+  const addName  = NewUser()
+  const addUser = NewUser()
 
   async function createProfile(e) {
     e.preventDefault()
@@ -27,6 +29,7 @@ export default function ProfileCreationForm() {
     } 
 
     setLoading(false)
+    addUser(e)
     history.push("/ModSelect")
   
   }

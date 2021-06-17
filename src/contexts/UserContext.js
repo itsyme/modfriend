@@ -32,6 +32,7 @@ export function UserProvider({ children }) {
     }
 
     const value = {
+        currentUser,
         addUser,
         addName,
         addEmail

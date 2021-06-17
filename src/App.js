@@ -22,7 +22,7 @@ function App() {
   return (
     <>
     
-    
+    <UserProvider>
     <BrowserRouter>
     <AuthProvider>
       <IfFirebaseAuthed>
@@ -45,6 +45,7 @@ function App() {
         </Switch>
         </AuthProvider>
       </BrowserRouter>
+      </UserProvider>
     </>
   );
 }

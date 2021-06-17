@@ -1,6 +1,6 @@
 import logo from '../../modfriend.png';
 import React, { useState, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { Box, Button, Paper, TextField } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
 import styles from "./RegisterForm.module.css";
@@ -18,7 +18,7 @@ export default function RegisterForm() {
   const passwordRef = useRef()
   const passwordConfirmRef = useRef()
   const { signup } = useAuth()
-  const { addEmail } = NewUser()
+  const addEmail = NewUser()
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
   const history = useHistory()
