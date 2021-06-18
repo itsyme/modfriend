@@ -37,6 +37,7 @@ export function AuthProvider({ children }) {
     signup,
     login,
     signOut
+    
   }
 
   return (

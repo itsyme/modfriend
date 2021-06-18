@@ -1,17 +1,17 @@
 import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
-import {AuthProvider} from '../contexts/AuthContext';
-import FirebaseAuth from 'firebase';
+import {useAuth} from '../contexts/AuthContext';
 
 const PrivateRoute = ({component: Component, ...rest}) => {
-    const isLoggedIn = AuthProvider.getInstance().getCurrentUser();
+    const {getUser} = useAuth();
+    const isLoggedIn = getUser();
     console.log(isLoggedIn);
 
     return (
         <Route
         {...rest}
         render = {props =>
-        isLoggedIn != undefined ? (
+        isLoggedIn !== undefined ? (
             <Component {...props} />
         ) : (
             <Redirect to = {{pathname: '/', state: {from: props.location}}} />
