@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react"
 import { firebase } from "@firebase/app"
+import { Button } from '@material-ui/core';
+import {Link} from 'react-router-dom';
 
 function MyProfile() {
     const [name, setName] = useState("")
@@ -42,6 +44,13 @@ function MyProfile() {
         <h3>
             Status:
         </h3>
+        <Button 
+        style = {{background: "#4952ff", color: "white"}}
+        variant = "contained"
+        component = {Link} 
+        to = '/ProfileCreation'>
+            Edit Profile
+        </Button>
         </>
 
     )

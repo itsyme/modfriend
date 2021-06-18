@@ -13,6 +13,8 @@ import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import HomeIcon from '@material-ui/icons/Home';
+import {useHistory} from "react-router-dom";
+import { useAuth } from '../../contexts/AuthContext'
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -79,6 +81,23 @@ function AppShell() {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
+  const history = useHistory();
+  const { signOut } = useAuth();
+
+  function handleSignOut() {
+    
+    signOut();
+    console.log("Successfully signed out")
+    history.push("/");
+
+  }
+
+  const handleMenuCloseSignout = () => {
+    handleMenuClose();
+    handleSignOut();
+  }
+
+
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
     <Menu
@@ -93,7 +112,7 @@ function AppShell() {
       <MenuItem onClick={handleMenuClose} component = { Link } to="/MyProfile">
         My Profile
         </MenuItem>
-      <MenuItem onClick={handleMenuClose} component = {Link} to = '/'>Logout</MenuItem>
+      <MenuItem onClick={handleMenuCloseSignout}>Logout</MenuItem>
     </Menu>
   );
 

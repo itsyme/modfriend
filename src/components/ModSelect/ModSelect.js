@@ -12,14 +12,15 @@ function ModSelect() {
         'CS1101',
         'MA1101R'
     ]
-        /*useEffect(() => {
+        useEffect(() => {
             const uid = firebase.auth().currentUser?.uid;
             const db = firebase.firestore();
-            db.collection("users").doc(uid).update({ 
+            const modRef = db.collection("users").doc(uid)
+            return modRef.update({ 
                 modules: modules
             })
         
-        })*/
+        })
 
     return (
         <div>
