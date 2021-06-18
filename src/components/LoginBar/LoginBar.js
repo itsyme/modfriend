@@ -25,7 +25,6 @@ export default function Login() {
       //setLoading(true)
       await login(emailRef.current.value, passwordRef.current.value)
     } catch {
-      //e.preventDefault();
       return setError("Failed to log in")
     }
 

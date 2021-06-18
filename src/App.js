@@ -11,17 +11,18 @@ import PageChat from "./pages/PageChat";
 import PageMatch from "./pages/PageMatch";
 import {AuthProvider} from './contexts/AuthContext';
 import AppShell from "./components/AppShell/AppShell";
-import PrivateRoute from './components/PrivateRoute';
-
+import AppShellUnauthed from './components/AppShellUnauthed';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import {auth} from './config/firebase';
 function App() {
-
+  const [user] = useAuthState(auth);
   return (
     <>
     
     
     <BrowserRouter>
     <AuthProvider>
-    <AppShell />
+    {user ? <AppShell /> : <AppShellUnauthed /> }
 
     
         <Switch>

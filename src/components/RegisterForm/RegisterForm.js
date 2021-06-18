@@ -14,17 +14,9 @@ export default function RegisterForm() {
   const passwordRef = useRef()
   const passwordConfirmRef = useRef()
   const { signup } = useAuth()
-  //const { addEmail } = NewUser()
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
 
-  /*function updateEmail(e){
-    //e.preventDefault();
-    const db = firebase.firestore();
-    const userRef = db.collection("emails").add({
-    email: emailRef.current.value
-    });  
-  }*/
 
   async function handleSubmit(e) {
     e.preventDefault()
@@ -42,7 +34,7 @@ export default function RegisterForm() {
     try {
       setError("")
       setLoading(true)
-      await signup(emailRef.current.value, passwordRef.current.value)// && addEmail(emailRef.current.value)
+      await signup(emailRef.current.value, passwordRef.current.value)
     } catch {
       return setError("Email already in use");
     } 

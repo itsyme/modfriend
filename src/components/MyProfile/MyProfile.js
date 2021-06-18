@@ -7,6 +7,7 @@ function MyProfile() {
     const [name, setName] = useState("")
     const [faculty, setFaculty] = useState("")
     const [modules, setModules] = useState("")
+    const [year, setYear] = useState("")
     const uid = firebase.auth().currentUser?.uid;
     const db = firebase.firestore();
     const docRef = db.collection("users").doc(uid);
@@ -15,7 +16,8 @@ function MyProfile() {
         if (doc.exists) {
             setName(doc.data().name);
             setFaculty(doc.data().faculty);
-            setModules(doc.data().modules)
+            setModules(doc.data().modules);
+            setYear(doc.data().year);
         } else {
             // doc.data() will be undefined in this case
             console.log("No such document!");
@@ -36,7 +38,7 @@ function MyProfile() {
             Faculty: {faculty}
         </h3>
         <h3>
-            Year:
+            Year: {year}
         </h3>
         <h3>
             Modules: {modules}
