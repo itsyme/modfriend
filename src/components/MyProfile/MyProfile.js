@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom';
 function MyProfile() {
     const [name, setName] = useState("")
     const [faculty, setFaculty] = useState("")
-    const [modules, setModules] = useState("")
+    const [modules, setModules] = useState([])
     const [year, setYear] = useState("")
     const uid = firebase.auth().currentUser?.uid;
     const db = firebase.firestore();
@@ -26,6 +26,8 @@ function MyProfile() {
         console.log("Error getting document:", error);
     });
 
+
+
     return (
         <>
         <h1>
@@ -41,8 +43,10 @@ function MyProfile() {
             Year: {year}
         </h3>
         <h3>
-            Modules: {modules}
+            Modules: 
+
         </h3>
+        <div> {modules.map(modules => (<p key={modules}> {modules} </p> ))} </div>
         <h3>
             Status:
         </h3>
