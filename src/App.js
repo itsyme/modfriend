@@ -14,6 +14,8 @@ import AppShell from "./components/AppShell/AppShell";
 import AppShellUnauthed from './components/AppShellUnauthed';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import {auth} from './config/firebase';
+
+
 function App() {
   const [user] = useAuthState(auth);
   return (
@@ -24,7 +26,7 @@ function App() {
     <AuthProvider>
     {user ? <AppShell /> : <AppShellUnauthed /> }
 
-    
+  
         <Switch>
           <Route exact path="/" component={PageLogin} />
           <Route exact path="/Register" component={PageRegister} />
