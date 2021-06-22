@@ -103,8 +103,6 @@ export default function ProfileCreationForm() {
         </Select>
       </FormControl>
           <p />
-          <TextField required id="standard-required" label="Re-enter Password"/>
-          <p />
             <Button variant = "contained" style = {{background: "#4952ff", color: "white"}}
             type="submit"
             >
