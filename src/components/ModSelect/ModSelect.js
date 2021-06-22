@@ -25,16 +25,15 @@ function ModSelect() {
         } 
             const arr = modulesRef.current.value.split(" ")
             setModules(arr)
-            console.log(modules)
 
             const uid = firebase.auth().currentUser?.uid;
             const db = firebase.firestore();
-            const modRef = db.collection("users").doc(uid).update({ 
-                modules: modules
+            db.collection("users").doc(uid).update({ 
+                modules: arr
             })
 
             setLoading(false)
-    //history.push("/MyProfile")
+            history.push("/MyProfile")
         }
 
     return (
@@ -55,14 +54,14 @@ function ModSelect() {
           onSubmit={updateModules}>
                {error && <Alert severity="error">{error}</Alert>}
           <TextField
-          id="standard-helperText"
+          required id="standard-required" 
           label="Insert modules"
           helperText="eg CS1010S CS1101 MA1101R"
           inputRef={modulesRef} required
         />
           <Button variant = "contained" style = {{background: "#4952ff", color: "white"}} 
             type="submit">
-              Login
+              Submit
             </Button>
             </form>
           </center>

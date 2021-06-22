@@ -40,7 +40,8 @@ export default function ProfileCreationForm() {
       db.collection("users").doc(uid).set({ 
       faculty: faculty,
       name: nameRef.current.value,
-      year: year
+      year: year,
+      modules: []
        })
 
     setLoading(false)
