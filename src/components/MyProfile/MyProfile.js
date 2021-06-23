@@ -54,8 +54,16 @@ function MyProfile() {
         style = {{background: "#4952ff", color: "white"}}
         variant = "contained"
         component = {Link} 
-        to = '/ProfileCreation'>
+        to = '/ProfileEdit'>
             Edit Profile
+        </Button>
+        <p />
+        <Button 
+        style = {{background: "#4952ff", color: "white"}}
+        variant = "contained"
+        component = {Link} 
+        to = '/ModSelect'>
+            Edit Mods
         </Button>
         </>
 

@@ -5,6 +5,7 @@ import PageLogin from "./pages/PageLogin"
 import PageRegister from "./pages/PageRegister";
 import PageMyProfile from "./pages/PageMyProfile";
 import PageProfileCreation from "./pages/PageProfileCreation";
+import PageProfileEdit from "./pages/PageProfileEdit";
 import PageModSelect from "./pages/PageModSelect";
 import PageNotifications from "./pages/PageNotifications";
 import PageChat from "./pages/PageChat";
@@ -32,6 +33,7 @@ function App() {
           <Route exact path="/Register" component={PageRegister} />
           <Route exact path="/MyProfile" component={PageMyProfile} />
           <Route exact path="/ProfileCreation" component={PageProfileCreation} />
+          <Route exact path="/ProfileEdit" component={PageProfileEdit} />
           <Route exact path="/ModSelect" component={PageModSelect} />
           <Route exact path="/Notifications" component={PageNotifications} />
           <Route exact path="/Chat" component={PageChat} />
