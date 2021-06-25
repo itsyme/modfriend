@@ -30,6 +30,7 @@ function MyProfile() {
 
     return (
         <>
+        <center>
         <h1>
             Your Profile
         </h1>
@@ -65,6 +66,7 @@ function MyProfile() {
         to = '/ModSelect'>
             Edit Mods
         </Button>
+        </center>
         </>
 
     )

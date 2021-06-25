@@ -77,12 +77,7 @@ export default function Login() {
           </form>
           </Paper>
         </Box>
-        <p className = {styles.NUSLogin}>
-        Log in with NUS:
-        <Button variant = 'contained' style = {{background: "#4952ff", color: "white"}}>
-            Click here!
-        </Button>
-        </p>
+        
         <p>
           <Button component = {Link} to="/Register">
            Sign up!

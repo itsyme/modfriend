@@ -106,7 +106,7 @@ export default function ProfileEditForm() {
             <Button variant = "contained" style = {{background: "#4952ff", color: "white"}}
             type="submit"
             >
-              Next
+              Submit
             </Button>
           
           </form>
