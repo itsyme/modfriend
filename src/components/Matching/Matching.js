@@ -20,22 +20,24 @@ function Matching() {
     const allUsers = db.collection("users");
     const userMods = (await allUsers.doc(uid).get()).data().modules;
     const mods = db.collection("mods");
+    const userMatches = (await allUsers.doc(uid).get()).data().matches;
     
     for (let i = 0; i < userMods.length; i++) {
       var thisMod = userMods[i];
       var matchMod = (await mods.doc(thisMod).get()).data().users;
       var copyUsers = []
 
-      if (matchMod.length < 2) {
-        continue;
-      }
-
       for (let j = 0; j < matchMod.length; j++) {
         var thisUser = matchMod[j];
-        if (thisUser !== uid) {
-          copyUsers.push(thisUser);
-        }
+        if (thisUser === uid) continue;
+
+        if (userMatches.includes(thisUser)) continue;
+
+        copyUsers.push(thisUser);
+        
       }
+
+      if (copyUsers.length < 1 ) continue;
 
       var result = copyUsers[Math.floor(Math.random() * copyUsers.length)];
 
