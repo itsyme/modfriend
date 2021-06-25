@@ -41,7 +41,8 @@ export default function ProfileCreationForm() {
       faculty: faculty,
       name: nameRef.current.value,
       year: year,
-      modules: []
+      modules: [],
+      matches: []
        })
 
     setLoading(false)

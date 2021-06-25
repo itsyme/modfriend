@@ -37,11 +37,10 @@ export default function ProfileEditForm() {
     } 
       const uid = firebase.auth().currentUser?.uid;
       const db = firebase.firestore();
-      db.collection("users").doc(uid).set({ 
+      db.collection("users").doc(uid).update({ 
       faculty: faculty,
       name: nameRef.current.value,
-      year: year,
-      modules: []
+      year: year
        })
 
     setLoading(false)
