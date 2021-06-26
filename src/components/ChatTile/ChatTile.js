@@ -1,7 +1,7 @@
 import { firebase } from '@firebase/app';
 import { Card, CardActionArea, Typography } from '@material-ui/core';
 
-export default function ChatTile(props) {
+export default async function ChatTile(props) {
     const db = firebase.firestore();
     const dbCollection = db.collection("users");
     const uid = props.uid;
