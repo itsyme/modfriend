@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { Box, Button, FormControl, InputLabel, Select, MenuItem, Paper, TextField } from '@material-ui/core';
 import styles from "./ProfileCreationForm.module.css";
+import { Alert } from '@material-ui/lab';
 
 import { firebase } from "@firebase/app"
 import { Business } from '@material-ui/icons';
@@ -42,9 +43,11 @@ export default function ProfileCreationForm() {
       name: nameRef.current.value,
       year: year,
       modules: [],
-      matches: []
+      matches: [],
+      availability: false
        })
-
+       
+       console.log(faculty)
     setLoading(false)
     history.push("/ModSelect")
   
@@ -63,6 +66,7 @@ export default function ProfileCreationForm() {
         <Box display = "inline-block">
           <Paper elevation = {3}>
           <form className = {styles.profileCreationForm} onSubmit={CreateProfile}>
+          {error && <Alert severity="error">{error}</Alert>}
           <TextField 
           required id="standard-required" 
           label="Name"
