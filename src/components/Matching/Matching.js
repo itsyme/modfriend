@@ -58,7 +58,7 @@ function Matching() {
 
         if (userMatches.includes(thisUser)) continue;
 
-        if (userAvailability != true) continue;
+        if (userAvailability !== true) continue;
 
         copyUsers.push(thisUser);
         
