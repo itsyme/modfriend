@@ -1,11 +1,11 @@
-import Matching from "../components/Matching/Matching";
+import MatchingLayout from "../components/Matching/MatchingLayout";
 
 function PageMatch() {
     return (
         <>
        
         <p />
-        <Matching />
+        <MatchingLayout />
         </>
     )
 }
