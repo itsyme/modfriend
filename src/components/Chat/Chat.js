@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { firebase } from "@firebase/app";
+import ChatTile from "../ChatTile/ChatTile";
 
 function Chat() {
   const [friend, setFriend] = useState([])
@@ -8,6 +9,7 @@ function Chat() {
   const uid = firebase.auth().currentUser?.uid;
   const db = firebase.firestore();
   const users = db.collection('users')
+  var matches = [];
 
   users.doc(uid).get().then((doc) => {
     if (doc.exists) {
@@ -30,13 +32,20 @@ users.doc(friendName).get().then((doc) => {
   } 
 })
 
+for (let i = 0; i < friend.length; i++) {
+  matches.push(<ChatTile uid={friend[i]} key = {i} />)
+}
+
 //console.log(friendName)
 
 
     return (
+      <>
         <h1>
             Start chatting with {name} !
         </h1>
+        {matches}
+      </>
     )
 }
 

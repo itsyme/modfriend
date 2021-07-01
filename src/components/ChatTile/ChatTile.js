@@ -1,14 +1,24 @@
 import { firebase } from '@firebase/app';
 import { Card, CardActionArea, Typography } from '@material-ui/core';
+import React, { useState } from 'react';
 
-export default async function ChatTile(props) {
+export default function ChatTile(props) {
     const db = firebase.firestore();
     const dbCollection = db.collection("users");
     const uid = props.uid;
-    const user = await dbCollection.doc(uid).get();
-    const userName = user.data().name;
-    const userYear = user.data().year;
-    const userFaculty = user.data().faculty;
+    
+    const [userName, setUserName] = useState("");
+    const [userYear, setUserYear] = useState(0);
+    const [userFaculty, setUserFaculty] = useState("")
+
+    dbCollection.doc(uid).get().then((doc) => {
+        if (doc.exists) {
+            setUserName(doc.data().name);
+            setUserYear(doc.data().year);
+            setUserFaculty(doc.data().faculty);
+        }
+    }
+    )
 
     return (
         <Card>
