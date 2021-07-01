@@ -30,7 +30,7 @@ export default function ChatTile(props) {
                     {userFaculty}
                 </Typography>
                 <Typography variant="body2" color="textSecondary" component="p">
-                    {userYear}
+                    {"Year "+userYear}
                 </Typography>
 
             </CardActionArea>
