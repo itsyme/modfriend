@@ -41,10 +41,11 @@ for (let i = 0; i < friend.length; i++) {
 
     return (
       <>
+      
         <h1>
             Start chatting with {name} !
         </h1>
-        {matches}
+        {matches.length > 0 ? matches : <h3>No matches found</h3>}
       </>
     )
 }
