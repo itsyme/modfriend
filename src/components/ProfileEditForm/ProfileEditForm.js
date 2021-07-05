@@ -40,7 +40,8 @@ export default function ProfileEditForm() {
       db.collection("users").doc(uid).update({ 
       faculty: faculty,
       name: nameRef.current.value,
-      year: year
+      year: year,
+      availableMods: []
        })
 
     setLoading(false)

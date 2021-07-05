@@ -51,6 +51,9 @@ export default function CheckboxListSecondary() {
         if (doc.exists) {
             setUserMods(doc.data().modules)
             setAvailMods(doc.data().availableMods)
+            if (availMods.length === 0) {
+              setAvailMods([])
+            }
              
         } else {
             // doc.data() will be undefined in this case
