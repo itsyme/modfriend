@@ -44,7 +44,7 @@ export default function ProfileCreationForm() {
       year: year,
       modules: [],
       matches: [],
-      availability: false
+      availableMods: []
        })
        
        console.log(faculty)

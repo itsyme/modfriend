@@ -1,40 +1,47 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
-import { Button, FormControlLabel, Switch, Typography } from "@material-ui/core";
+import { Avatar, Button, Switch, InputLabel, List, ListItem, 
+ListItemSecondaryAction, ListItemText, ListItemAvatar} from "@material-ui/core";
 import { firebase } from "@firebase/app";
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1,
-  },
-  paper: {
-    padding: theme.spacing(5),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
+    width: '100%',
+    maxWidth: 600,
+    backgroundColor: theme.palette.background.paper,
   },
 }));
 
-export default function CenteredGrid() {
+export default function CheckboxListSecondary() {
+  const [error, setError] = useState('')
   const classes = useStyles();
   const [userMods, setUserMods] = useState([]);
+  const [availMods, setAvailMods] = React.useState([]);
 
-  const [state, setState] = React.useState({
-    //checkedA: true,
-    checkedB: true,
-  });
 
-  const handleChange = (event) => {
-    setState({ ...state, [event.target.name]: event.target.checked });
+  const handleToggle = (value) => () => {
+    const currentIndex = availMods.indexOf(value);
+    const newChecked = [...availMods];
     const uid = firebase.auth().currentUser?.uid;
     const db = firebase.firestore();
-    db.collection("users").doc(uid).update({ 
-      availability: !state.checkedB
-    })
-    console.log(!state.checkedB)
+
+    if (currentIndex === -1) {
+      newChecked.push(value);
+      db.collection('mods').doc(value).update({
+        users: firebase.firestore.FieldValue.arrayUnion(uid)
+     });
+    } else {
+      newChecked.splice(currentIndex, 1);
+     db.collection('mods').doc(value).update({
+      users: firebase.firestore.FieldValue.arrayRemove(uid)
+   });
+    }
+
+   
+    setAvailMods(newChecked);
   };
-  
+
 
   const fetchModules = async() => {
     const uid = firebase.auth().currentUser?.uid;
@@ -43,6 +50,8 @@ export default function CenteredGrid() {
     response.get().then((doc) => {
         if (doc.exists) {
             setUserMods(doc.data().modules)
+            setAvailMods(doc.data().availableMods)
+             
         } else {
             // doc.data() will be undefined in this case
             console.log("No such document!", uid);
@@ -50,44 +59,104 @@ export default function CenteredGrid() {
     }).catch((error) => {
         console.log("Error getting document:", error);
     });
+
+    
+  
   }
   useEffect(() => {
     fetchModules();
   }, [])
 
+  async function handleMatch(e) {
+    e.preventDefault();
+    const uid = firebase.auth().currentUser?.uid;
+    const db = firebase.firestore();
+    db.collection("users").doc(uid).update({ 
+      availableMods: availMods
+    })
+    const allUsers = db.collection("users");
+    const userMods = (await allUsers.doc(uid).get()).data().availableMods;
+    const mods = db.collection("mods");
+    const userMatches = (await allUsers.doc(uid).get()).data().matches;
 
-  console.log(userMods)
+    for (let i = 0; i < userMods.length; i++) {
+      var thisMod = userMods[i];
+      var matchMod = (await mods.doc(thisMod).get()).data().users;
+      var copyUsers = []
 
+      for (let j = 0; j < matchMod.length; j++) {
+        var thisUser = matchMod[j];
+
+        if (thisUser === uid) continue;
+
+        if (userMatches.includes(thisUser)) continue;
+
+        copyUsers.push(thisUser);
+        
+      }
+
+      if (copyUsers.length < 1 ) continue;
+
+      if (copyUsers.length === 0) {
+        setError("no matches found")
+      } 
+
+      var result = copyUsers[Math.floor(Math.random() * copyUsers.length)];
+
+
+
+      allUsers.doc(uid).update({
+        matches: firebase.firestore.FieldValue.arrayUnion(result),
+        //availability: false
+      })
+
+      allUsers.doc(result).update({
+        matches: firebase.firestore.FieldValue.arrayUnion(uid),
+        //availability: false
+      })
+
+    }
+
+    alert("Matching Complete!")
+    //history.push("/Chat")
+
+  
+}
 
   return (
-    <div className={classes.root}>
-        <Grid
-        container
-        direction="column"
-        justify="flex-start"
-        alignItems="stretch"
-        spacing={2}
-        >
-            {userMods.map(function(mod, index){
-                    return <Grid key={ index }>
-                        <Paper className={classes.paper}>
-                        <Typography variant="h5" component="h5">
-                            {mod}
-                            </Typography>
-                            <FormControlLabel
-        control={
-          <Switch
-            checked={state.checkedB}
-            onChange={handleChange}
-            name="checkedB"
-            color="primary"
+    <div>
+    <List dense className={classes.root}>
+      {userMods.map((value) => {
+        const labelId = {value};
+        return (
+          <h2>
+          <ListItem key={value}>
+            <ListItemAvatar>
+              <Avatar
+                alt={`Avatar n°${value + 1}`}
+                src={`/static/images/avatar/${value + 1}.jpg`}
+              />
+            </ListItemAvatar>
+            <ListItemText id={labelId} primary={`${value}`} />
+            <ListItemSecondaryAction>
+            <InputLabel>Availability</InputLabel>
+            <Switch
+            edge="end"
+            onChange={handleToggle(value)}
+            checked={availMods.indexOf(value) !== -1}
+            inputProps={{ 'aria-labelledby':  labelId }}
           />
-        }
-        label="Toggle Availability"
-      />
-                    </Paper>        
-               </Grid>
-                  })}
-        </Grid>
-    </div>
-  )}
+            </ListItemSecondaryAction>
+          </ListItem>
+          </h2>
+        );
+      })}
+    </List>
+    <Button onClick={handleMatch} variant = "contained" style = {{background: "#4952ff", color: "white"}}>
+        Match!
+      </Button>
+      </div>
+  );
+}
+
+
