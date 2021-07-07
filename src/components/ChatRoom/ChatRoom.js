@@ -3,12 +3,15 @@ import { firebase } from "@firebase/app";
 import { useState } from 'react';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 
-export default function ChatRoom() {
+export default function ChatRoom(props) {
+    const uid1 = auth.currentUser;
+    const uidcombined = uid1 + props.otherUid;
     const firestore = firebase.firestore();
-    const messagesRef = firestore.collection('messages');
+    const messagesRef = firestore.collection('messages')/*.doc(uidcombined).collection('messages')*/;
     const query = messagesRef.orderBy('createdAt').limit(25);
     const [messages] = useCollectionData(query, {idField: 'id'});
     const [formValue, setFormValue] = useState('');
+    
 
     const sendMessage = async(e) => {
         e.preventDefault();
