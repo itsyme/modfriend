@@ -37,8 +37,6 @@ export default function CheckboxListSecondary() {
       users: firebase.firestore.FieldValue.arrayRemove(uid)
    });
     }
-
-   
     setAvailMods(newChecked);
   };
 
@@ -50,10 +48,12 @@ export default function CheckboxListSecondary() {
     response.get().then((doc) => {
         if (doc.exists) {
             setUserMods(doc.data().modules)
-            setAvailMods(doc.data().availableMods)
-            if (availMods.length === 0) {
-              setAvailMods([])
+            if (doc.data().availableMods.length > 0) {
+              setAvailMods(doc.data().availableMods)
+            } else {
+              setAvailMods(userMods)
             }
+            console.log(doc.data().availableMods)
              
         } else {
             // doc.data() will be undefined in this case
@@ -63,7 +63,6 @@ export default function CheckboxListSecondary() {
         console.log("Error getting document:", error);
     });
 
-    
   
   }
   useEffect(() => {
@@ -119,12 +118,14 @@ export default function CheckboxListSecondary() {
       })
 
     }
-
+    
     alert("Matching Complete!")
     //history.push("/Chat")
 
   
 }
+
+//console.log(availMods)
 
   return (
     <div>
