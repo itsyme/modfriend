@@ -1,20 +1,25 @@
 import React, { useState } from 'react';
 import { firebase } from "@firebase/app";
 import ChatTile from "../ChatTile/ChatTile";
+import ChatRoom from "../ChatRoom/ChatRoom";
 
 function Chat() {
-  const [friend, setFriend] = useState([])
-  const [friendName, setFriendName] = useState("ur new friend")
-  const [name, setName] = useState("")
+  const [friend, setFriend] = useState([]);
+  const [friendName, setFriendName] = useState("ur new friend");
+  const [name, setName] = useState("");
+  const [chatUid, setChatUid] = useState("null");
   const uid = firebase.auth().currentUser?.uid;
   const db = firebase.firestore();
-  const users = db.collection('users')
+  const users = db.collection('users');
   var matches = [];
+  const childFunction = (data, name) => {
+    setChatUid(data);
+    setName(name);
+  }
 
   users.doc(uid).get().then((doc) => {
     if (doc.exists) {
-      setFriend(doc.data().matches)
-      setFriendName(friend[0])      
+      setFriend(doc.data().matches) 
     }
     else {
       // doc.data() will be undefined in this case
@@ -24,27 +29,30 @@ function Chat() {
   console.log("Error getting document:", error);
 });
 
-users.doc(friendName).get().then((doc) => {
+/*users.doc(friendName).get().then((doc) => {
   if (doc.exists) {
     setName(doc.data().name)
   } else {
     console.log("no Document")
   } 
-})
+})*/
 
 for (let i = 0; i < friend.length; i++) {
-  matches.push(<ChatTile uid={friend[i]} key = {i} />)
+  matches.push(<ChatTile uid={friend[i]} key = {i} clickFunction = {childFunction}/>)
 }
 
 //console.log(friendName)
 
 
+
     return (
       <>
+      
         <h1>
-            Start chatting with {name} !
+            Chatting with {name}!
         </h1>
-        {matches}
+        {matches.length > 0 ? matches : <h3>No matches found</h3>}
+        <ChatRoom otherUid = {chatUid} />
       </>
     )
 }
