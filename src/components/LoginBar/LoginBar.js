@@ -8,13 +8,20 @@ import { useAuth } from '../../contexts/AuthContext'
 import { Alert } from '@material-ui/lab';
 
 export default function Login() {
+  const history = useHistory();
   const emailRef = useRef()
   const passwordRef = useRef()
   const { login } = useAuth()
   const [error, setError] = useState("")
+<<<<<<< HEAD
   //const [loading, setLoading] = useState(false)
   const history = useHistory()
 
+=======
+  const [loading, setLoading] = useState(false)
+
+  //const [loading, setLoading] = useState(false)
+>>>>>>> 601c5fcd78e5a2cadfbe9ccd0612520e5dce1589
 
   async function handleSubmit(e) {
   e.preventDefault()
@@ -24,10 +31,12 @@ export default function Login() {
       //setLoading(true)
       await login(emailRef.current.value, passwordRef.current.value)
     } catch {
-      e.preventDefault();
-      setError("Failed to log in")
+      return setError("Failed to log in")
     }
 
+    console.log("successful login")
+    history.push("/Home")
+    
     //setLoading(false)
     //setError("no error")
     history.push('/MyProfile')
@@ -52,7 +61,7 @@ export default function Login() {
           <Paper elevation = {3}>
           <form className = {styles.loginForm} 
           onSubmit={handleSubmit}
-          //action="/Home"
+          action="/Home"
           >
           <TextField 
           id="standard-basic" 
@@ -74,12 +83,7 @@ export default function Login() {
           </form>
           </Paper>
         </Box>
-        <p className = {styles.NUSLogin}>
-        Log in with NUS:
-        <Button variant = 'contained' style = {{background: "#4952ff", color: "white"}}>
-            Click here!
-        </Button>
-        </p>
+        
         <p>
           <Button component = {Link} to="/Register">
            Sign up!

@@ -2,13 +2,12 @@ import logo from '../../modfriend.png';
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { Box, Button, FormControl, InputLabel, Select, MenuItem, Paper, TextField } from '@material-ui/core';
-import styles from "./ProfileCreationForm.module.css";
-import { Alert } from '@material-ui/lab';
+import styles from "./ProfileEditForm.module.css";
 
-import firebase from 'firebase';
-import { AddToQueueSharp } from '@material-ui/icons';
+import { firebase } from "@firebase/app"
+import { Business } from '@material-ui/icons';
 
-export default function ProfileCreationForm() {
+export default function ProfileEditForm() {
   const nameRef = useRef()
   const facultyRef = useRef()
   const history = useHistory();
@@ -38,19 +37,15 @@ export default function ProfileCreationForm() {
     } 
       const uid = firebase.auth().currentUser?.uid;
       const db = firebase.firestore();
-      db.collection("users").doc(uid).set({ 
+      db.collection("users").doc(uid).update({ 
       faculty: faculty,
       name: nameRef.current.value,
       year: year,
-      modules: [],
-      matches: [],
       availableMods: []
        })
-       
-       console.log(faculty)
+
     setLoading(false)
-    addUser(e)
-    history.push("/ModSelect")
+    history.push("/MyProfile")
   
   }
 
@@ -67,7 +62,6 @@ export default function ProfileCreationForm() {
         <Box display = "inline-block">
           <Paper elevation = {3}>
           <form className = {styles.profileCreationForm} onSubmit={CreateProfile}>
-          {error && <Alert severity="error">{error}</Alert>}
           <TextField 
           required id="standard-required" 
           label="Name"
@@ -112,7 +106,7 @@ export default function ProfileCreationForm() {
             <Button variant = "contained" style = {{background: "#4952ff", color: "white"}}
             type="submit"
             >
-              Next
+              Submit
             </Button>
           
           </form>

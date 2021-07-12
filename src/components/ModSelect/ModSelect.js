@@ -1,14 +1,41 @@
 import logo from '../../modfriend.png';
-import { Box, Button, Select, FormControl, InputLabel, MenuItem } from "@material-ui/core";
+import { Box, Button, Select, FormControl, InputLabel, MenuItem, TextField } from "@material-ui/core";
 import styles from "./ModSelect.module.css";
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import { Alert } from '@material-ui/lab';
+import { firebase } from "@firebase/app"
+import { useEffect, useRef, useState } from 'react';
 
 function ModSelect() {
-    const modules = [
-        'CS1010S',
-        'CS1101',
-        'MA1101R'
-    ]
+    const modulesRef = useRef()
+    const [error, setError] = useState('')
+    const [loading, setLoading] = useState(false)
+    const [modules, setModules] = useState([])
+    const history = useHistory();
+  
+
+    async function updateModules(e) {
+      
+        e.preventDefault()
+    
+        try {
+          setError("")
+          setLoading(true)
+    
+        } catch {
+          setError("modules not updated")
+        } 
+            const arr = modulesRef.current.value.split(" ")
+            setModules(arr)
+
+            const uid = firebase.auth().currentUser?.uid;
+            const db = firebase.firestore();
+            db.collection("users").doc(uid).update({ 
+                modules: arr
+            })
+            setLoading(false)
+            history.push("/MyProfile")
+        }
 
     return (
         <div>
@@ -22,21 +49,22 @@ function ModSelect() {
           height = "200" width = "200">
           </img>
           <h1>
-              Select your modules!
+              Type in your modules!
           </h1>
-          <FormControl>
-              <InputLabel>Modules</InputLabel>
-              <Select multiple className = {styles.moduleBar}
-              value = {modules}>
-                  {modules.map((mod) => (
-            <MenuItem key={mod} value={mod}>
-              {mod}
-            </MenuItem>
-                  ))}
-
-              </Select>
-          </FormControl>
-
+          <form className = {styles.moduleBar} 
+          onSubmit={updateModules}>
+               {error && <Alert severity="error">{error}</Alert>}
+          <TextField
+          required id="standard-required" 
+          label="Insert modules"
+          helperText="eg CS1010S CS1101 MA1101R"
+          inputRef={modulesRef} required
+        />
+          <Button variant = "contained" style = {{background: "#4952ff", color: "white"}} 
+            type="submit">
+              Submit
+            </Button>
+            </form>
           </center>
         </div>
 
