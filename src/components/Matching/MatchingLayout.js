@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Avatar, Button, Switch, InputLabel, List, ListItem, 
+import { Avatar, Button, Switch, IconButton, InputLabel, List, ListItem, 
 ListItemSecondaryAction, ListItemText, ListItemAvatar} from "@material-ui/core";
 import { firebase } from "@firebase/app";
-
+import { Alert } from '@material-ui/lab';
+import DeleteOutlined from '@material-ui/icons/DeleteOutlined'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -77,12 +78,12 @@ export default function CheckboxListSecondary() {
       availableMods: availMods
     })
     const allUsers = db.collection("users");
-    const userMods = (await allUsers.doc(uid).get()).data().availableMods;
+    const userModules = (await allUsers.doc(uid).get()).data().availableMods;
     const mods = db.collection("mods");
     const userMatches = (await allUsers.doc(uid).get()).data().matches;
 
-    for (let i = 0; i < userMods.length; i++) {
-      var thisMod = userMods[i];
+    for (let i = 0; i < userModules.length; i++) {
+      var thisMod = userModules[i];
       var matchMod = (await mods.doc(thisMod).get()).data().users;
       var copyUsers = []
 
@@ -98,6 +99,8 @@ export default function CheckboxListSecondary() {
       }
 
       if (copyUsers.length < 1 ) continue;
+
+      console.log(copyUsers)
 
       if (copyUsers.length === 0) {
         setError("no matches found")
@@ -121,8 +124,22 @@ export default function CheckboxListSecondary() {
     
     alert("Matching Complete!")
     //history.push("/Chat")
+}
 
-  
+async function handleDelete(value) {
+  //value.preventDefault();
+  const uid = firebase.auth().currentUser?.uid;
+  const db = firebase.firestore();
+  db.collection('users').doc(uid).update({
+    modules: firebase.firestore.FieldValue.arrayRemove(value),
+    availableMods: firebase.firestore.FieldValue.arrayRemove(value)
+ });
+ db.collection('mods').doc(value).update({
+  users: firebase.firestore.FieldValue.arrayRemove(uid)
+});
+ console.log('deleted', value)
+  const newModules = (await db.collection('users').doc(uid).get()).data().modules;
+  setUserMods(newModules)
 }
 
 //console.log(availMods)
@@ -130,6 +147,7 @@ export default function CheckboxListSecondary() {
   return (
     <div>
     <List dense className={classes.root}>
+    {error && <Alert severity="error">{error}</Alert>}
       {userMods.map((value) => {
         const labelId = {value};
         return (
@@ -152,6 +170,9 @@ export default function CheckboxListSecondary() {
           />
             </ListItemSecondaryAction>
           </ListItem>
+          <IconButton onClick={() => handleDelete(value)}>
+              <DeleteOutlined />
+            </IconButton>
           </h2>
         );
       })}

@@ -16,18 +16,11 @@ import AppShellUnauthed from './components/AppShellUnauthed';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import {auth} from './config/firebase';
 
-<<<<<<< HEAD
-import { UserProvider } from "./contexts/UserContext";
-//import RegisterForm from './components/RegisterForm'
-=======
->>>>>>> 601c5fcd78e5a2cadfbe9ccd0612520e5dce1589
-
 function App() {
   const [user] = useAuthState(auth);
   return (
     <>
-    
-    <UserProvider>
+
     <BrowserRouter>
     <AuthProvider>
     {user ? <AppShell /> : <AppShellUnauthed /> }
@@ -47,7 +40,6 @@ function App() {
         
         </AuthProvider>
       </BrowserRouter>
-      </UserProvider>
     </>
   );
 }

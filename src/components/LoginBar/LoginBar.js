@@ -13,15 +13,7 @@ export default function Login() {
   const passwordRef = useRef()
   const { login } = useAuth()
   const [error, setError] = useState("")
-<<<<<<< HEAD
-  //const [loading, setLoading] = useState(false)
-  const history = useHistory()
-
-=======
   const [loading, setLoading] = useState(false)
-
-  //const [loading, setLoading] = useState(false)
->>>>>>> 601c5fcd78e5a2cadfbe9ccd0612520e5dce1589
 
   async function handleSubmit(e) {
   e.preventDefault()

@@ -31,8 +31,25 @@ function ModSelect() {
             const uid = firebase.auth().currentUser?.uid;
             const db = firebase.firestore();
             db.collection("users").doc(uid).update({ 
-                modules: arr
+                modules: arr,
+                availableMods: arr
             })
+
+            for (let i = 0; i < arr.length; i++) {
+              var thisMod = arr[i];
+              var dbCollection = db.collection("mods").doc(thisMod);
+              var doc =  await dbCollection.get();
+              if (!doc.exists) {
+                db.collection("mods").doc(thisMod).set({
+                  users: [uid]
+              })
+              } else {
+                dbCollection.update({
+                  users: firebase.firestore.FieldValue.arrayUnion(uid)
+                })
+              }
+            }
+
             setLoading(false)
             history.push("/MyProfile")
         }

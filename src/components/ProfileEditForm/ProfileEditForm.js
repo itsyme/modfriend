@@ -5,7 +5,6 @@ import { Box, Button, FormControl, InputLabel, Select, MenuItem, Paper, TextFiel
 import styles from "./ProfileEditForm.module.css";
 
 import { firebase } from "@firebase/app"
-import { Business } from '@material-ui/icons';
 
 export default function ProfileEditForm() {
   const nameRef = useRef()
@@ -45,7 +44,7 @@ export default function ProfileEditForm() {
        })
 
     setLoading(false)
-    history.push("/MyProfile")
+    //history.push("/MyProfile")
   
   }
 

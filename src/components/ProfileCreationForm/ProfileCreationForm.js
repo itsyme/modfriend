@@ -5,7 +5,7 @@ import { Box, Button, FormControl, InputLabel, Select, MenuItem, Paper, TextFiel
 import styles from "./ProfileCreationForm.module.css";
 import { Alert } from '@material-ui/lab';
 
-import firebase from 'firebase';
+import { firebase } from "@firebase/app"
 import { AddToQueueSharp } from '@material-ui/icons';
 
 export default function ProfileCreationForm() {
@@ -49,7 +49,6 @@ export default function ProfileCreationForm() {
        
        console.log(faculty)
     setLoading(false)
-    addUser(e)
     history.push("/ModSelect")
   
   }

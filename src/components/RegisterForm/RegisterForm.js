@@ -5,8 +5,6 @@ import { Box, Button, Paper, TextField } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
 import styles from "./RegisterForm.module.css";
 import { useAuth } from '../../contexts/AuthContext'
-import {useHistory} from 'react-router-dom';
-
 
 export default function RegisterForm() {
   const history = useHistory();
