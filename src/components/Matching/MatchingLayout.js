@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState , useRef} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Avatar, Button, Switch, IconButton, InputLabel, List, ListItem, 
-ListItemSecondaryAction, ListItemText, ListItemAvatar} from "@material-ui/core";
+ListItemSecondaryAction, ListItemText, ListItemAvatar, TextField} from "@material-ui/core";
 import { firebase } from "@firebase/app";
 import { Alert } from '@material-ui/lab';
 import DeleteOutlined from '@material-ui/icons/DeleteOutlined'
+import Fab from '@material-ui/core/Fab';
+import AddIcon from '@material-ui/icons/Add';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,6 +21,7 @@ export default function CheckboxListSecondary() {
   const classes = useStyles();
   const [userMods, setUserMods] = useState([]);
   const [availMods, setAvailMods] = React.useState([]);
+  const moduleRef = useRef()
 
 
   const handleToggle = (value) => () => {
@@ -100,12 +103,9 @@ export default function CheckboxListSecondary() {
 
       if (copyUsers.length < 1 ) continue;
 
-      console.log(copyUsers)
+      //console.log(copyUsers)
 
-      if (copyUsers.length === 0) {
-        setError("no matches found")
-      } 
-
+     
       var result = copyUsers[Math.floor(Math.random() * copyUsers.length)];
 
 
@@ -119,10 +119,16 @@ export default function CheckboxListSecondary() {
         matches: firebase.firestore.FieldValue.arrayUnion(uid),
         //availability: false
       })
+      
+      // if (copyUsers.length === 0) {
+      //   setError("no matches found")
+      // } 
 
+      //console.log(error)
+      alert("Matching Complete!")
     }
-    
-    alert("Matching Complete!")
+     
+
     //history.push("/Chat")
 }
 
@@ -142,6 +148,16 @@ async function handleDelete(value) {
   setUserMods(newModules)
 }
 
+async function handleAddMod(e) {
+  <TextField 
+      required id="standard-required" 
+      label="add Module"
+      type="text"
+      inputRef={moduleRef} required
+      /> 
+      console.log("add")
+
+}
 //console.log(availMods)
 
   return (
@@ -176,6 +192,9 @@ async function handleDelete(value) {
           </h2>
         );
       })}
+      <Fab color="primary" aria-label="add" size="small" onClick={() => handleAddMod}>
+        <AddIcon />
+      </Fab>
     </List>
     <Button onClick={handleMatch} variant = "contained" style = {{background: "#4952ff", color: "white"}}>
         Match!
