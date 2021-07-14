@@ -5,9 +5,8 @@ import ChatRoom from "../ChatRoom/ChatRoom";
 
 function Chat() {
   const [friend, setFriend] = useState([]);
-  const [friendName, setFriendName] = useState("ur new friend");
   const [name, setName] = useState("");
-  const [chatUid, setChatUid] = useState("null");
+  const [chatUid, setChatUid] = useState("");
   const uid = firebase.auth().currentUser?.uid;
   const db = firebase.firestore();
   const users = db.collection('users');
@@ -52,7 +51,7 @@ for (let i = 0; i < friend.length; i++) {
             Chatting with {name}!
         </h1>
         {matches.length > 0 ? matches : <h3>No matches found</h3>}
-        <ChatRoom otherUid = {chatUid} />
+        {chatUid === "" ? <h3>Click on a match!</h3> : <ChatRoom otherUid = {chatUid} />}
       </>
     )
 }

@@ -4,10 +4,34 @@ import { useState } from 'react';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 
 export default function ChatRoom(props) {
-    const uid1 = auth.currentUser;
-    const uidcombined = uid1 + props.otherUid;
+    const uid1 = auth.currentUser.uid;
+    const uidcombined1 = uid1 + props.otherUid;
+    const uidcombined2 = props.otherUid + uid1;
     const firestore = firebase.firestore();
-    const messagesRef = firestore.collection('messages')/*.doc(uidcombined).collection('messages')*/;
+    const [messagesRef, setMessagesRef] = useState(firestore.collection('messages').doc(uidcombined1).collection('messages2'));
+    const docRef1 = firestore.collection('messages').doc(uidcombined1);
+    const docRef2 = firestore.collection('messages').doc(uidcombined2);
+
+    docRef1.get().then((doc) => {
+        if (doc.exists) return;
+
+        docRef2.get().then((doc2) => {
+            if (doc2.exists) return;
+
+            docRef2.set({
+                room: true,
+            });
+            docRef2.collection("messages2").doc("1").set({
+                text: "Chat Room Created!",
+                createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                uid1
+            })
+        })
+        setMessagesRef(firestore.collection('messages').doc(uidcombined2).collection('messages2'));
+        return;
+    })
+    
+
     const query = messagesRef.orderBy('createdAt').limit(25);
     const [messages] = useCollectionData(query, {idField: 'id'});
     const [formValue, setFormValue] = useState('');
