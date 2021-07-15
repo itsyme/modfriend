@@ -63,7 +63,7 @@ function ModSelect() {
             </Box>  
             <center>
           <img src = {logo} alt = "modFriend logo" 
-          height = "200" width = "200">
+          height = "138" width = "375">
           </img>
           <h1>
               Type in your modules!
@@ -77,7 +77,7 @@ function ModSelect() {
           helperText="eg CS1010S CS1101 MA1101R"
           inputRef={modulesRef} required
         />
-          <Button variant = "contained" style = {{background: "#4952ff", color: "white"}} 
+          <Button variant = "contained" style = {{background: "#1D5FB6", color: "white"}} 
             type="submit">
               Submit
             </Button>
