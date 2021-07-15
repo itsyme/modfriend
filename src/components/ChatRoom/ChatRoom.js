@@ -1,9 +1,10 @@
 import { auth } from "../../config/firebase";
 import { firebase } from "@firebase/app";
-import { useState } from 'react';
+import { useState , useRef } from 'react';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 
 export default function ChatRoom(props) {
+    const dummy = useRef();
     const uid1 = auth.currentUser.uid;
     const uidcombined1 = uid1 + props.otherUid;
     const uidcombined2 = props.otherUid + uid1;
@@ -49,6 +50,8 @@ export default function ChatRoom(props) {
         })
 
         setFormValue('');
+
+        dummy.current.scrollIntoView({behavior: 'smooth'});
     }
 
 
@@ -56,6 +59,7 @@ export default function ChatRoom(props) {
         <>
         <div>
             {messages && messages.map(msg => <ChatMessage key = {msg.id} message = {msg} />)}
+            <div ref = {dummy}></div>
         </div>
         <form onSubmit={sendMessage}>
             <input value = {formValue} onChange = {(e) => setFormValue(e.target.value)}/>
