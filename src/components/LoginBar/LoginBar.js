@@ -7,7 +7,7 @@ import styles from "./LoginBar.module.css";
 import { useAuth } from '../../contexts/AuthContext'
 import { Alert } from '@material-ui/lab';
 
-export default function Login() {
+export default function LoginBar() {
   const history = useHistory();
   const emailRef = useRef()
   const passwordRef = useRef()
@@ -35,17 +35,17 @@ export default function Login() {
   }
 
     return (
-        <div>
+        <div className = {styles.padding}>
           <center>
           <img src = {logo} alt = "modFriend logo" 
-          height = "200" width = "200">
+          height = "138" width = "375">
           </img>
-        <h1>
+        <h1 className = {styles.textStyle}>
           Welcome to modFriend!
         </h1>
         <p>
-          <h2>
-            Please login or sign up to continue
+          <h2 className = {styles.textStyle}>
+            Please Login or Sign up to continue
           </h2>
         </p>
         <Box display = 'inline-block'>
@@ -67,7 +67,7 @@ export default function Login() {
           type="password"
           inputRef={passwordRef} required
           />
-            <Button variant = "contained" style = {{background: "#4952ff", color: "white"}} 
+            <Button variant = "contained" style = {{background: "#1D5FB6", color: "white"}} 
             type="submit">
               Login
             </Button>

@@ -52,7 +52,7 @@ function MyProfile() {
             Status:
         </h3>
         <Button 
-        style = {{background: "#4952ff", color: "white"}}
+        style = {{background: "#1D5FB6", color: "white"}}
         variant = "contained"
         component = {Link} 
         to = '/ProfileEdit'>
@@ -60,7 +60,7 @@ function MyProfile() {
         </Button>
         <p />
         <Button 
-        style = {{background: "#4952ff", color: "white"}}
+        style = {{background: "#1D5FB6", color: "white"}}
         variant = "contained"
         component = {Link} 
         to = '/ModSelect'>

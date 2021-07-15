@@ -53,7 +53,7 @@ export default function ProfileEditForm() {
             <p />
         <center>
           <img src = {logo} alt = "modFriend logo" 
-          height = "200" width = "200">
+          height = "138" width = "375">
           </img>
         <h1>
           Create Your Profile

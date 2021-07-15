@@ -51,7 +51,7 @@ export default function RegisterForm() {
       </Box>
       <center>
         <img src={logo} alt="modFriend logo"
-          height="200" width="200">
+          height="138" width="375">
         </img>
         <h1>
           Sign up here!
@@ -83,7 +83,7 @@ export default function RegisterForm() {
                 inputRef={passwordConfirmRef} required
               />
               <p />
-              <Button variant="contained" style={{ background: "#4952ff", color: "white" }}
+              <Button variant="contained" style={{ background: "#1D5FB6", color: "white" }}
                 type="submit"
                 disabled={loading}
               >

@@ -196,7 +196,7 @@ async function handleAddMod(e) {
         <AddIcon />
       </Fab>
     </List>
-    <Button onClick={handleMatch} variant = "contained" style = {{background: "#4952ff", color: "white"}}>
+    <Button onClick={handleMatch} variant = "contained" style = {{background: "#1D5FB6", color: "white"}}>
         Match!
       </Button>
       </div>

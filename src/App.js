@@ -15,12 +15,13 @@ import AppShell from "./components/AppShell/AppShell";
 import AppShellUnauthed from './components/AppShellUnauthed';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import {auth} from './config/firebase';
+import Background from './background.png';
 
 function App() {
   const [user] = useAuthState(auth);
   return (
     <>
-
+    <div style = {{ backgroundImage: `url(${Background})`, backgroundSize: 'cover', height: '100vh', minHeight: '100%', position: 'relative'}}>
     <BrowserRouter>
     <AuthProvider>
     {user ? <AppShell /> : <AppShellUnauthed /> }
@@ -40,6 +41,7 @@ function App() {
         
         </AuthProvider>
       </BrowserRouter>
+      </div>
     </>
   );
 }

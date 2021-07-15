@@ -159,7 +159,7 @@ function AppShell() {
 
   return (
     <div className={classes.grow}>
-      <AppBar position="static" style = {{background: "#4952ff"}}>
+      <AppBar position="static" style = {{background: "#1D5FB6"}}>
         <Toolbar>
           <IconButton
             edge="start"

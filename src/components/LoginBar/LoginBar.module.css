@@ -10,3 +10,12 @@
     align-items: center;
     padding: 10px;
 }
+
+.textStyle {
+    font-family: Arial;
+
+}
+
+.padding {
+    padding-top: 75px;
+}
