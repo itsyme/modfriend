@@ -1,4 +1,3 @@
-
 import logo from '../../modfriend.png';
 import React, { useState, useRef } from 'react';
 import { Link, useHistory } from 'react-router-dom';
@@ -55,13 +54,15 @@ export default function LoginBar() {
           onSubmit={handleSubmit}
           action="/Home"
           >
-          <TextField 
+          <TextField
+          className = {styles.textField} 
           id="standard-basic" 
           label="E-mail"
           type="email"
           inputRef={emailRef} required
           />
           <TextField 
+          className = {styles.textField}
           id="standard-basic" 
           label="Password"
           type="password"

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { firebase } from "@firebase/app";
 import ChatTile from "../ChatTile/ChatTile";
 import ChatRoom from "../ChatRoom/ChatRoom";
+import styles from "./Chat.module.css";
 
 function Chat() {
   const [friend, setFriend] = useState([]);
@@ -50,8 +51,14 @@ for (let i = 0; i < friend.length; i++) {
         <h1>
             Chatting with {name}!
         </h1>
-        {matches.length > 0 ? matches : <h3>No matches found</h3>}
-        {chatUid === "" ? <h3>Click on a match!</h3> : <ChatRoom otherUid = {chatUid} />}
+        <div className = {styles.row}>
+          <div>
+            {matches.length > 0 ? matches : <h3>No matches found</h3>}
+          </div>
+          <div  className = {styles.chatRoom}>
+            {chatUid === "" ? <h3>Click on a match!</h3> : <ChatRoom otherUid = {chatUid} />}
+          </div>
+        </div>
       </>
     )
 }

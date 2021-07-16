@@ -2,6 +2,7 @@ import { auth } from "../../config/firebase";
 import { firebase } from "@firebase/app";
 import { useState , useRef } from 'react';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
+import styles from './ChatRoom.module.css';
 
 export default function ChatRoom(props) {
     const dummy = useRef();

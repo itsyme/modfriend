@@ -1,6 +1,6 @@
 import logo from '../../modfriend.png';
-import React, { useEffect, useRef, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import React, { useRef, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { Box, Button, FormControl, InputLabel, Select, MenuItem, Paper, TextField } from '@material-ui/core';
 import styles from "./ProfileEditForm.module.css";
 
@@ -56,7 +56,7 @@ export default function ProfileEditForm() {
           height = "138" width = "375">
           </img>
         <h1>
-          Create Your Profile
+          Edit Your Profile
         </h1>
         <Box display = "inline-block">
           <Paper elevation = {3}>
@@ -68,9 +68,10 @@ export default function ProfileEditForm() {
           inputRef={nameRef} required
           />
           <p />
-          <FormControl className = {styles.year}>
+          <FormControl >
         <InputLabel>Year</InputLabel>
         <Select
+        className = {styles.year}
         labelId="demo-simple-select-label"
         id="demo-simple-select"
         value={year}
@@ -82,9 +83,10 @@ export default function ProfileEditForm() {
         </Select>
         </FormControl>
         <p />
-        <FormControl className = {styles.faculty}>
+        <FormControl >
         <InputLabel>Faculty</InputLabel>
         <Select 
+        className = {styles.faculty}
         labelId="demo-simple-select-label"
         id="demo-simple-select"
         value={faculty}
@@ -102,7 +104,7 @@ export default function ProfileEditForm() {
         </Select>
       </FormControl>
           <p />
-            <Button variant = "contained" style = {{background: "#4952ff", color: "white"}}
+            <Button variant = "contained" style = {{background: "#1D5FB6", color: "white"}}
             type="submit"
             >
               Submit

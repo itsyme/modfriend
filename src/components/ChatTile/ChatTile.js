@@ -1,6 +1,7 @@
 import { firebase } from '@firebase/app';
 import { Card, CardActionArea, Typography } from '@material-ui/core';
 import React, { useState } from 'react';
+import styles from './ChatTile.module.css';
 
 export default function ChatTile(props) {
     const db = firebase.firestore();
@@ -25,7 +26,9 @@ export default function ChatTile(props) {
     )
 
     return (
-        <Card onClick = {onClickFunction}>
+        <Card
+        className = {styles.chatTile}
+        onClick = {onClickFunction}>
             <CardActionArea >
                 <Typography gutterBottom variant="h5" component="h2">
                     {userName}
@@ -38,6 +41,7 @@ export default function ChatTile(props) {
                 </Typography>
 
             </CardActionArea>
+            
         </Card>
     )
 
