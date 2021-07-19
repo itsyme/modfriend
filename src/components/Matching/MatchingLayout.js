@@ -273,7 +273,7 @@ export default function CheckboxListSecondary() {
                 autoFocus
                 margin="dense"
                 id="name"
-                label="module name"
+                label="Module Code"
                 type="text"
                 inputRef={modRef}
                 fullWidth
