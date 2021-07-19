@@ -59,24 +59,26 @@ export default function ChatRoom(props) {
     return (
         <>
         <div>
-            {messages && messages.map(msg => <ChatMessage key = {msg.id} message = {msg} />)}
-            <div ref = {dummy}></div>
+            <div> 
+                {messages && messages.map(msg => <ChatMessage key = {msg.id} message = {msg} />)}
+                <div ref = {dummy}></div>
+            </div>
+            <form onSubmit={sendMessage}>
+                <input value = {formValue} onChange = {(e) => setFormValue(e.target.value)}/>
+                <button type = "submit">
+                    Send
+                </button>
+            </form>
         </div>
-        <form onSubmit={sendMessage}>
-            <input value = {formValue} onChange = {(e) => setFormValue(e.target.value)}/>
-            <button type = "submit">
-                Send
-            </button>
-        </form>
         </>
     )
 }
 
 function ChatMessage(props) {
     const { text, uid } = props.message;
-    const messageClass = uid === auth.currentUser.uid ? 'sent' : 'received';
+    const isSender = uid === auth.currentUser.uid;
     return (
-        <div className={`message ${messageClass}`}>
+        <div className={isSender ? styles.sendMessage : styles.receiveMessage}>
         <p>{text}</p>
         </div>
     )

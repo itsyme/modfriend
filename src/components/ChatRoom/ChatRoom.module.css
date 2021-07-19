@@ -1,0 +1,12 @@
+.chatRoom {
+    display: flex;
+    flex-grow: 4;
+}
+
+.receiveMessage {
+    text-align: left;
+}
+
+.sendMessage {
+    text-align: right;
+}

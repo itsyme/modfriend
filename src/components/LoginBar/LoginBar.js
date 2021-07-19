@@ -47,7 +47,7 @@ export default function LoginBar() {
             Please Login or Sign up to continue
           </h2>
         </p>
-        <Box display = 'inline-block'>
+        <Box display = 'inline-block' minWidth = '520px'>
         {error && <Alert severity="error">{error}</Alert>}
           <Paper elevation = {3}>
           <form className = {styles.loginForm} 
