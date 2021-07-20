@@ -65,7 +65,7 @@ export default function ChatRoom(props) {
             </div>
             <form onSubmit={sendMessage}>
                 <input className = {styles.textBar} value = {formValue} onChange = {(e) => setFormValue(e.target.value)}/>
-                <button type = "submit">
+                <button className = {styles.sendButton} type = "submit">
                     Send
                 </button>
             </form>

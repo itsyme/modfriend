@@ -4,13 +4,27 @@
 }
 
 .receiveMessage {
-    text-align: left;
+    display: flex;
+    justify-content: flex-start;
 }
 
-.sendMessage {
-    text-align: right;
+.sendMessage{
+    display: flex;
+    justify-content: flex-end;
 }
 
 .textBar {
     width: 95%;
+    box-sizing: border-box;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #1D5FB6;
+}
+
+.sendButton {
+    padding: 10px;
+    background-color: #1D5FB6;
+    color: aliceblue;
+    border: 1px solid #1D5FB6;
+    border-radius: 4px;
 }
