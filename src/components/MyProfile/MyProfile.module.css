@@ -1,0 +1,11 @@
+.profileData {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 40vw;
+    margin-right: 40vw;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    background-color: white;
+}

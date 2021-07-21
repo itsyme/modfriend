@@ -7,15 +7,13 @@ import {
 import { firebase } from "@firebase/app";
 import { Alert } from '@material-ui/lab';
 import DeleteOutlined from '@material-ui/icons/DeleteOutlined'
-import Fab from '@material-ui/core/Fab';
-import AddIcon from '@material-ui/icons/Add';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Snackbar from '@material-ui/core/Snackbar';
 import CloseIcon from '@material-ui/icons/Close';
+import styles from './MatchingLayout.module.css';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -211,7 +209,7 @@ export default function CheckboxListSecondary() {
   }
 
   return (
-    <div>
+    <div className = {styles.modules}>
       <List dense className={classes.root}>
         {error && <Alert severity="error">{error}</Alert>}
         {userMods.map((value) => {
@@ -247,7 +245,7 @@ export default function CheckboxListSecondary() {
                 open={openUndo}
                 autoHideDuration={6000}
                 onClose={handleCloseUndo}
-                message="Note archived"
+                message="Mod deleted"
                 action={
                   <React.Fragment>
                     <Button color="secondary" size="small" onClick={handleUndo}>
@@ -263,7 +261,7 @@ export default function CheckboxListSecondary() {
           );
         })}
         <div>
-          <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+          <Button variant="outlined" color="primary" onClick={handleClickOpen} style = {{marginLeft: '10px'}}>
             Add Modules
           </Button>
           <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
@@ -290,7 +288,7 @@ export default function CheckboxListSecondary() {
           </Dialog>
         </div>
       </List>
-      <Button onClick={handleMatch} variant="contained" style={{ background: "#1D5FB6", color: "white" }}>
+      <Button onClick={handleMatch} variant="contained" style={{ marginTop: '5px', background: "#1D5FB6", color: "white" }}>
         Match!
       </Button>
     </div>

@@ -47,7 +47,6 @@ for (let i = 0; i < friend.length; i++) {
 
     return (
       <>
-      
         <h1>
             Chatting with {name}!
         </h1>

@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { firebase } from "@firebase/app"
-import { Button } from '@material-ui/core';
+import { Button, Paper } from '@material-ui/core';
 import { Link } from 'react-router-dom';
+import styles from './MyProfile.module.css';
 
 function MyProfile() {
     const [name, setName] = useState("")
@@ -30,7 +31,8 @@ function MyProfile() {
 
     return (
         <>
-            <center>
+            <Paper elevation = {3} className = {styles.profileData}>
+                <div>
                 <h1>
                     Your Profile
                 </h1>
@@ -48,9 +50,9 @@ function MyProfile() {
 
                 </h3>
                 <div> {modules.map(modules => (<p key={modules}> {modules} </p>))} </div>
-                <h3>
-                    Status:
-                </h3>
+                </div>
+                </Paper>
+                <center>
                 <Button
                     style={{ background: "#1D5FB6", color: "white" }}
                     variant="contained"
@@ -58,15 +60,8 @@ function MyProfile() {
                     to='/ProfileEdit'>
                     Edit Profile
                 </Button>
+                </center>
                 <p />
-                {/* <Button 
-        style = {{background: "#1D5FB6", color: "white"}}
-        variant = "contained"
-        component = {Link} 
-        to = '/ModSelect'>
-            Edit Mods
-        </Button> */}
-            </center>
         </>
 
     )
