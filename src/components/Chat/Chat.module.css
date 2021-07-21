@@ -6,4 +6,8 @@
 .chatRoom {
     padding-left: 20px;
     width: 80%;
+    background-color: white;
+    border: 1px black solid ;
+    border-radius: 5px;
+    padding: 5px;
 }
