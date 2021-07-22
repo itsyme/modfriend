@@ -8,7 +8,18 @@
     margin-left: 10px;
     padding-left: 20px;
     width: 80%;
-    background-color: white;
     border-radius: 5px;
     padding: 5px;
+    margin-top: 5px;
+}
+
+.label {
+    background-color: #4a536b;
+    color: white;
+    width: fit-content;
+    padding: 1px;
+    padding-left: 10px;
+    padding-right: 15px;
+    margin-top: 10px;
+    border-radius: 0px 38px 38px 0px;
 }

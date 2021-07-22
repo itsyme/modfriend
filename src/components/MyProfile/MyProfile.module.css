@@ -3,9 +3,18 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin-left: 40vw;
-    margin-right: 40vw;
+    margin-left: 42vw;
     margin-bottom: 10px;
-    padding-left: 10px;
-    background-color: white;
+    padding-left: 4vw;
+}
+
+.label {
+    background-color: #4a536b;
+    color: white;
+    width: fit-content;
+    padding: 1px;
+    padding-left: 46vw;
+    padding-right: 15px;
+    margin-top: 10px;
+    border-radius: 0px 38px 38px 0px;
 }

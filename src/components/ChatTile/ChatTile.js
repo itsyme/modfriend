@@ -28,15 +28,16 @@ export default function ChatTile(props) {
     return (
         <Card
         className = {styles.chatTile}
-        onClick = {onClickFunction}>
+        onClick = {onClickFunction}
+        style = {{backgroundColor: '#4a536b', borderRadius: '0px'}}>
             <CardActionArea >
-                <Typography gutterBottom variant="h5" component="h2">
+                <Typography gutterBottom variant="h5" component="h2" style = {{color: 'white'}}>
                     {userName}
                 </Typography>
-                <Typography variant="body2" color="textSecondary" component="p">
+                <Typography variant="body2" color="textSecondary" component="p" style = {{color: 'white'}}>
                     {userFaculty}
                 </Typography>
-                <Typography variant="body2" color="textSecondary" component="p">
+                <Typography variant="body2" color="textSecondary" component="p" style = {{color: 'white'}}>
                     {"Year "+userYear}
                 </Typography>
 

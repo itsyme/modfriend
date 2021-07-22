@@ -6,8 +6,9 @@
 .receiveMessage {
     display: flex;
     justify-content: flex-start;
-    background-color: pink;
-    border-radius: 10px;
+    color: white;
+    background-color: #ff9a8d;
+    border-radius: 20px 20px 20px 10px;
     margin: 2px;
     padding-right: 10px;
     padding-left: 10px;
@@ -17,9 +18,9 @@
 .sendMessage{
     display: flex;
     justify-content: flex-end;
-    background-color: #1D5FB6;
+    background-color: #4a536b;
     color: white;
-    border-radius: 10px;
+    border-radius: 20px 20px 10px 20px;
     margin: 2px;
     padding-right: 10px;
     padding-left: 10px;
@@ -32,17 +33,17 @@
     box-sizing: border-box;
     padding: 10px;
     border-radius: 10px;
-    border: 1px solid #1D5FB6;
-    outline-offset: -1px;
+    border: 1px solid #4a536b;
+    outline: none;
     margin-top: 5px;
     margin-bottom: 7px;
 }
 
 .sendButton {
     padding: 10px;
-    background-color: #1D5FB6;
+    background-color: #4a536b;
     color: white;
-    border: 1px solid #1D5FB6;
+    border: 1px solid #4a536b;
     border-radius: 10px;
     margin-left: 2px;
 }

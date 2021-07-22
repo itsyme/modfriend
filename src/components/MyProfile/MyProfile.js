@@ -31,11 +31,16 @@ function MyProfile() {
 
     return (
         <>
-            <Paper elevation = {3} className = {styles.profileData}>
+        <div className = {styles.label}>
+        <h1>
+            Your Profile
+        </h1>
+        </div>
+            <Paper elevation = {3} className = {styles.profileData} style = {{backgroundColor: '#4a536b',
+             color: 'white',
+             borderRadius: '80px 0px 0px 80px'}}>
                 <div>
-                <h1>
-                    Your Profile
-                </h1>
+                
                 <h3>
                     Name: {name}
                 </h3>

@@ -47,9 +47,11 @@ for (let i = 0; i < friend.length; i++) {
 
     return (
       <>
+      <div className = {styles.label}>
         <h1>
             Chatting with {name}!
         </h1>
+      </div>
         <div className = {styles.row}>
           <div>
             {matches.length > 0 ? matches : <h3>No matches found</h3>}
