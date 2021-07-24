@@ -59,7 +59,9 @@ function MyProfile() {
                 </Paper>
                 <center>
                 <Button
-                    style={{ background: "#1D5FB6", color: "white" }}
+                    style={{ background: "#1D5FB6",
+                     color: "white",
+                    marginTop: '10px' }}
                     variant="contained"
                     component={Link}
                     to='/ProfileEdit'>
