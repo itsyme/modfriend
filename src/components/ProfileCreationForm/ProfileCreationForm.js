@@ -1,12 +1,10 @@
 import logo from '../../modfriend.png';
-import React, { useEffect, useRef, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import React, { useRef, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { Box, Button, FormControl, InputLabel, Select, MenuItem, Paper, TextField } from '@material-ui/core';
 import styles from "./ProfileCreationForm.module.css";
 import { Alert } from '@material-ui/lab';
-
-import { firebase } from "@firebase/app"
-import { AddToQueueSharp } from '@material-ui/icons';
+import { firebase } from "@firebase/app";
 
 export default function ProfileCreationForm() {
   const nameRef = useRef()

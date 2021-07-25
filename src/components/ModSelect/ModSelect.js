@@ -1,10 +1,10 @@
 import logo from '../../modfriend.png';
-import { Box, Button, Select, FormControl, InputLabel, MenuItem, TextField } from "@material-ui/core";
+import { Box, Button, TextField } from "@material-ui/core";
 import styles from "./ModSelect.module.css";
 import { Link, useHistory } from 'react-router-dom';
 import { Alert } from '@material-ui/lab';
 import { firebase } from "@firebase/app"
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 
 function ModSelect() {
     const modulesRef = useRef()
@@ -72,10 +72,11 @@ function ModSelect() {
           onSubmit={updateModules}>
                {error && <Alert severity="error">{error}</Alert>}
           <TextField
-          required id="standard-required" 
+          required 
+          id="standard-required" 
           label="Insert modules"
           helperText="eg CS1010S CS1101 MA1101R"
-          inputRef={modulesRef} required
+          inputRef={modulesRef} 
         />
           <Button variant = "contained" style = {{background: "#1D5FB6", color: "white"}} 
             type="submit">

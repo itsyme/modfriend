@@ -19,7 +19,7 @@ export default function LoginBar() {
 
     try {
       setError("")
-      //setLoading(true)
+      setLoading(true)
       await login(emailRef.current.value, passwordRef.current.value)
     } catch {
       return setError("Failed to log in")
@@ -28,7 +28,7 @@ export default function LoginBar() {
     console.log("successful login")
     history.push("/Home")
     
-    //setLoading(false)
+    setLoading(false)
     //setError("no error")
     history.push('/MyProfile')
   }

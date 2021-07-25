@@ -8,7 +8,6 @@ import { firebase } from "@firebase/app"
 
 export default function ProfileEditForm() {
   const nameRef = useRef()
-  const facultyRef = useRef()
   const history = useHistory();
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
@@ -44,7 +43,7 @@ export default function ProfileEditForm() {
        })
 
     setLoading(false)
-    //history.push("/MyProfile")
+    history.push("/MyProfile")
   
   }
 
@@ -62,10 +61,11 @@ export default function ProfileEditForm() {
           <Paper elevation = {3}>
           <form className = {styles.profileCreationForm} onSubmit={CreateProfile}>
           <TextField 
-          required id="standard-required" 
+          required 
+          id="standard-required" 
           label="Name"
           type="text"
-          inputRef={nameRef} required
+          inputRef={nameRef}
           />
           <p />
           <FormControl >
