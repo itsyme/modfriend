@@ -9,7 +9,7 @@ import { firebase } from "@firebase/app"
 export default function ProfileEditForm() {
   const nameRef = useRef()
   const history = useHistory();
-  const [error, setError] = useState('')
+  //const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
   const [faculty, setFaculty] = useState("")
   const [year, setYear] = useState("")
@@ -27,11 +27,11 @@ export default function ProfileEditForm() {
     e.preventDefault()
 
     try {
-      setError("")
+      //setError("")
       setLoading(true)
 
     } catch {
-      setError("profile not created")
+      //setError("profile not created")
     } 
       const uid = firebase.auth().currentUser?.uid;
       const db = firebase.firestore();

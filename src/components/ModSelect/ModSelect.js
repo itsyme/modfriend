@@ -10,7 +10,7 @@ function ModSelect() {
     const modulesRef = useRef()
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
-    const [modules, setModules] = useState([])
+    //const [modules, setModules] = useState([])
     const history = useHistory();
   
 
@@ -26,7 +26,7 @@ function ModSelect() {
           setError("modules not updated")
         } 
             const arr = modulesRef.current.value.split(" ")
-            setModules(arr)
+            //setModules(arr)
 
             const uid = firebase.auth().currentUser?.uid;
             const db = firebase.firestore();

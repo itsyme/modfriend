@@ -32,7 +32,7 @@ export default function CheckboxListSecondary() {
   const [open, setOpen] = React.useState(false);
   const [openUndo, setOpenUndo] = React.useState(false);
   const [modDeleted, setModDeleted] = useState('')
-  const [addMod, setAddMod] = useState('')
+  //const [addMod, setAddMod] = useState('')
 
   const handleToggle = (value) => () => {
     const currentIndex = availMods.indexOf(value);
@@ -74,6 +74,7 @@ export default function CheckboxListSecondary() {
         console.log("No such document!", uid);
       }
     }).catch((error) => {
+      setError(error);
       console.log("Error getting document:", error);
     });
 
@@ -81,6 +82,7 @@ export default function CheckboxListSecondary() {
   }
   useEffect(() => {
     fetchModules();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   async function handleMatch(e) {

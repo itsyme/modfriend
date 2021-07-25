@@ -7,8 +7,7 @@ import { Alert } from '@material-ui/lab';
 import { firebase } from "@firebase/app";
 
 export default function ProfileCreationForm() {
-  const nameRef = useRef()
-  const facultyRef = useRef()
+  const nameRef = useRef();
   const history = useHistory();
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
@@ -56,7 +55,7 @@ export default function ProfileCreationForm() {
             <p />
         <center>
           <img src = {logo} alt = "modFriend logo" 
-          height = "200" width = "200">
+          height = "138" width = "375">
           </img>
         <h1>
           Create Your Profile
@@ -69,16 +68,17 @@ export default function ProfileCreationForm() {
           required id="standard-required" 
           label="Name"
           type="text"
-          inputRef={nameRef} required
+          inputRef={nameRef}
           />
           <p />
-          <FormControl className = {styles.year}>
+          <FormControl>
         <InputLabel>Year</InputLabel>
         <Select
         labelId="demo-simple-select-label"
         id="demo-simple-select"
         value={year}
-        onChange={handleYear} >
+        onChange={handleYear} 
+        className = {styles.year}>
           <MenuItem value={1}>Year 1</MenuItem>
           <MenuItem value={2}>Year 2</MenuItem>
           <MenuItem value={3}>Year 3</MenuItem>
@@ -86,13 +86,14 @@ export default function ProfileCreationForm() {
         </Select>
         </FormControl>
         <p />
-        <FormControl className = {styles.faculty}>
+        <FormControl>
         <InputLabel>Faculty</InputLabel>
         <Select 
         labelId="demo-simple-select-label"
         id="demo-simple-select"
         value={faculty}
-        onChange={handleFaculty} >
+        onChange={handleFaculty} 
+        className = {styles.faculty} >
           <MenuItem value={"Business"}>Business</MenuItem>
           <MenuItem value={"College of Humanities and Science"}>College of Humanities and Science</MenuItem>   
           <MenuItem value={"Computing"}>Computing</MenuItem>
@@ -106,7 +107,7 @@ export default function ProfileCreationForm() {
         </Select>
       </FormControl>
           <p />
-            <Button variant = "contained" style = {{background: "#4952ff", color: "white"}}
+            <Button variant = "contained" style = {{background: "#1D5FB6", color: "white"}}
             type="submit"
             >
               Next
