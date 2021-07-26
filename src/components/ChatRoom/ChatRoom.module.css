@@ -1,6 +1,6 @@
 .chatRoom {
-    display: flex;
-    flex-grow: 4;
+    overflow-y: scroll;
+    height: 70vh;
 }
 
 .receiveMessage {

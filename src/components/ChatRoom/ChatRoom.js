@@ -40,7 +40,7 @@ export default function ChatRoom(props) {
     
     
 
-    const query = messagesRef.orderBy('createdAt').limit(25);
+    const query = messagesRef.orderBy('createdAt');
     const [messages] = useCollectionData(query, {idField: 'id'});
     const [formValue, setFormValue] = useState('');
     
@@ -64,7 +64,7 @@ export default function ChatRoom(props) {
 
     return (
         <div>
-            <div> 
+            <div className = {styles.chatRoom}> 
                 {messages && messages.map(msg => <ChatMessage key = {msg.id} message = {msg} />)}
                 <div ref = {dummy}></div>
             </div>
