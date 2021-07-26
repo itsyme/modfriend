@@ -50,7 +50,7 @@ export default function ProfileEditForm() {
           <img src = {logo} alt = "modFriend logo" 
           height = "138" width = "375">
           </img>
-        <h1>
+        <h1 className = {styles.white}>
           Edit Your Profile
         </h1>
         <Box display = "inline-block">
