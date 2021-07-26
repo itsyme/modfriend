@@ -84,7 +84,9 @@ export default function CheckboxListSecondary() {
   }, [])
 
   async function handleMatch(e) {
+
     e.preventDefault();
+
     const uid = firebase.auth().currentUser?.uid;
     const db = firebase.firestore();
     db.collection("users").doc(uid).update({
@@ -95,10 +97,20 @@ export default function CheckboxListSecondary() {
     const mods = db.collection("mods");
     const userMatches = (await allUsers.doc(uid).get()).data().matches;
 
+    if (availMods.length === 0) {
+      return setError("No modules selected")
+    }
+
     for (let i = 0; i < userModules.length; i++) {
       var thisMod = userModules[i];
       var matchMod = (await mods.doc(thisMod).get()).data().users;
       var copyUsers = []
+
+      // if (matchMod.length < 2) {
+      //   return setError("no match found")
+      // }
+
+
 
       for (let j = 0; j < matchMod.length; j++) {
         var thisUser = matchMod[j];
@@ -130,10 +142,18 @@ export default function CheckboxListSecondary() {
         //availability: false
       })
 
+      db.collection('mods').doc(thisMod).update({
+        users: firebase.firestore.FieldValue.arrayRemove(uid)
+      });
+
       alert("Matching Complete!")
     }
 
+    if (copyUsers.length === 0) {
+      return setError("no match found please try again later")
+    }
 
+    console.log(error)
     //history.push("/Chat")
   }
 
@@ -209,9 +229,9 @@ export default function CheckboxListSecondary() {
   }
 
   return (
-    <div className = {styles.modules}>
+    <div className={styles.modules}>
+      {error && <Alert severity="error">{error}</Alert>}
       <List dense className={classes.root}>
-        {error && <Alert severity="error">{error}</Alert>}
         {userMods.map((value) => {
           const labelId = { value };
           return (
@@ -261,7 +281,7 @@ export default function CheckboxListSecondary() {
           );
         })}
         <div>
-          <Button variant="outlined" color="primary" onClick={handleClickOpen} style = {{marginLeft: '10px'}}>
+          <Button variant="outlined" color="primary" onClick={handleClickOpen} style={{ marginLeft: '10px' }}>
             Add Modules
           </Button>
           <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
