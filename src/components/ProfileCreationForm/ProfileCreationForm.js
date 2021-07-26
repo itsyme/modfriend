@@ -4,14 +4,12 @@ import { useHistory } from 'react-router-dom';
 import { Box, Button, FormControl, InputLabel, Select, MenuItem, Paper, TextField } from '@material-ui/core';
 import styles from "./ProfileCreationForm.module.css";
 import { Alert } from '@material-ui/lab';
-import Loading from '../Loading/Loading';
 import { firebase } from "@firebase/app";
 
 export default function ProfileCreationForm() {
   const nameRef = useRef();
   const history = useHistory();
   const [error, setError] = useState('')
-  const [loading, setLoading] = useState(false)
   const [faculty, setFaculty] = useState("")
   const [year, setYear] = useState("")
 
@@ -29,7 +27,6 @@ export default function ProfileCreationForm() {
 
     try {
       setError("")
-      setLoading(true)
 
     } catch {
       setError("profile not created")
@@ -46,13 +43,11 @@ export default function ProfileCreationForm() {
        })
        
        console.log(faculty)
-    setLoading(false)
     history.push("/ModSelect")
   
   }
 
     return (
-      loading ? <Loading /> :
         <div>
             <p />
         <center>

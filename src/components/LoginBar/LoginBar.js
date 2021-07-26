@@ -5,7 +5,6 @@ import { Box, Button, Paper, TextField } from '@material-ui/core';
 import styles from "./LoginBar.module.css";
 import { useAuth } from '../../contexts/AuthContext'
 import { Alert } from '@material-ui/lab';
-import Loading from '../Loading/Loading';
 
 export default function LoginBar() {
   const history = useHistory();
@@ -13,14 +12,12 @@ export default function LoginBar() {
   const passwordRef = useRef()
   const { login } = useAuth()
   const [error, setError] = useState("")
-  const [loading, setLoading] = useState(false)
 
   async function handleSubmit(e) {
   e.preventDefault()
 
     try {
       setError("")
-      setLoading(true)
       await login(emailRef.current.value, passwordRef.current.value)
     } catch {
       return setError("Failed to log in")
@@ -29,13 +26,11 @@ export default function LoginBar() {
     console.log("successful login")
     history.push("/Home")
     
-    setLoading(false)
     //setError("no error")
     history.push('/MyProfile')
   }
 
     return (
-      loading ? <Loading /> :
         <div className = {styles.padding}>
           <center>
           <img src = {logo} alt = "modFriend logo" 

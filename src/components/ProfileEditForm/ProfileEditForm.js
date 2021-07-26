@@ -3,14 +3,12 @@ import React, { useRef, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Box, Button, FormControl, InputLabel, Select, MenuItem, Paper, TextField } from '@material-ui/core';
 import styles from "./ProfileEditForm.module.css";
-import Loading from '../Loading/Loading';
 import { firebase } from "@firebase/app"
 
 export default function ProfileEditForm() {
   const nameRef = useRef()
   const history = useHistory();
   //const [error, setError] = useState('')
-  const [loading, setLoading] = useState(false)
   const [faculty, setFaculty] = useState("")
   const [year, setYear] = useState("")
 
@@ -28,7 +26,6 @@ export default function ProfileEditForm() {
 
     try {
       //setError("")
-      setLoading(true)
 
     } catch {
       //setError("profile not created")
@@ -42,13 +39,11 @@ export default function ProfileEditForm() {
       availableMods: []
        })
 
-    setLoading(false)
     history.push("/MyProfile")
   
   }
 
     return (
-      loading ? <Loading /> :
         <div>
             <p />
         <center>
