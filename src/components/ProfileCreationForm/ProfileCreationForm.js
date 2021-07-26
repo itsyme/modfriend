@@ -54,7 +54,7 @@ export default function ProfileCreationForm() {
           <img src = {logo} alt = "modFriend logo" 
           height = "138" width = "375">
           </img>
-        <h1>
+        <h1 className = {styles.white}>
           Create Your Profile
         </h1>
         <Box display = "inline-block">

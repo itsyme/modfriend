@@ -5,12 +5,10 @@ import { Link, useHistory } from 'react-router-dom';
 import { Alert } from '@material-ui/lab';
 import { firebase } from "@firebase/app"
 import { useRef, useState } from 'react';
-import Loading from '../Loading/Loading';
 
 function ModSelect() {
     const modulesRef = useRef()
     const [error, setError] = useState('')
-    const [loading, setLoading] = useState(false)
     //const [modules, setModules] = useState([])
     const history = useHistory();
   
@@ -21,7 +19,6 @@ function ModSelect() {
     
         try {
           setError("")
-          setLoading(true)
     
         } catch {
           setError("modules not updated")
@@ -51,15 +48,13 @@ function ModSelect() {
               }
             }
 
-            setLoading(false)
             history.push("/MyProfile")
         }
 
     return (
-      loading ? <Loading /> :
         <div>
             <Box className = {styles.backButton}>
-                <Button component = {Link} to = '/ProfileCreation'>
+                <Button component = {Link} to = '/ProfileCreation' style = {{color: 'white'}}>
                     Back
                 </Button>
             </Box>  
@@ -67,7 +62,7 @@ function ModSelect() {
           <img src = {logo} alt = "modFriend logo" 
           height = "138" width = "375">
           </img>
-          <h1>
+          <h1 className = {styles.white}>
               Type in your modules!
           </h1>
           <form className = {styles.moduleBar} 

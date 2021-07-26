@@ -6,7 +6,7 @@
 }
 
 .backButton {
-    padding: 10px
+    padding: 10px;
 }
 
 .year {
@@ -15,4 +15,8 @@
 
 .faculty {
     min-width: 80px;
+}
+
+.white { 
+    color: white;
 }
