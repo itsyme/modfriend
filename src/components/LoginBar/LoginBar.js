@@ -41,6 +41,7 @@ export default function LoginBar() {
           <img src = {logo} alt = "modFriend logo" 
           height = "138" width = "375">
           </img>
+        <div className = {styles.box}>  
         <h1 className = {styles.textStyle}>
           Welcome to modFriend!
         </h1>
@@ -80,10 +81,11 @@ export default function LoginBar() {
         </Box>
         
         <p>
-          <Button component = {Link} to="/Register">
+          <Button component = {Link} to="/Register" style = {{color: "white"}}>
            Sign up!
           </Button>
         </p>
+        </div>
         
         </center>
     </div>
