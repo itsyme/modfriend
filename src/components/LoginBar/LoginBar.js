@@ -5,6 +5,7 @@ import { Box, Button, Paper, TextField } from '@material-ui/core';
 import styles from "./LoginBar.module.css";
 import { useAuth } from '../../contexts/AuthContext'
 import { Alert } from '@material-ui/lab';
+import Loading from '../Loading/Loading';
 
 export default function LoginBar() {
   const history = useHistory();
@@ -34,6 +35,7 @@ export default function LoginBar() {
   }
 
     return (
+      loading ? <Loading /> :
         <div className = {styles.padding}>
           <center>
           <img src = {logo} alt = "modFriend logo" 

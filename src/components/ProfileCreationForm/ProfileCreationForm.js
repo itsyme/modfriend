@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { Box, Button, FormControl, InputLabel, Select, MenuItem, Paper, TextField } from '@material-ui/core';
 import styles from "./ProfileCreationForm.module.css";
 import { Alert } from '@material-ui/lab';
+import Loading from '../Loading/Loading';
 import { firebase } from "@firebase/app";
 
 export default function ProfileCreationForm() {
@@ -51,6 +52,7 @@ export default function ProfileCreationForm() {
   }
 
     return (
+      loading ? <Loading /> :
         <div>
             <p />
         <center>

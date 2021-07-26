@@ -5,6 +5,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { Alert } from '@material-ui/lab';
 import { firebase } from "@firebase/app"
 import { useRef, useState } from 'react';
+import Loading from '../Loading/Loading';
 
 function ModSelect() {
     const modulesRef = useRef()
@@ -55,6 +56,7 @@ function ModSelect() {
         }
 
     return (
+      loading ? <Loading /> :
         <div>
             <Box className = {styles.backButton}>
                 <Button component = {Link} to = '/ProfileCreation'>
