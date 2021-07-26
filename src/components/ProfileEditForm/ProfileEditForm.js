@@ -9,9 +9,8 @@ import { firebase } from "@firebase/app"
 
 export default function ProfileEditForm() {
   const nameRef = useRef()
-  const facultyRef = useRef()
   const history = useHistory();
-  const [error, setError] = useState('')
+  //const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
   const [faculty, setFaculty] = useState("")
   const [year, setYear] = useState("")
@@ -39,11 +38,11 @@ export default function ProfileEditForm() {
     e.preventDefault()
 
     try {
-      setError("")
+      //setError("")
       setLoading(true)
 
     } catch {
-      setError("profile not created")
+      setError("profile not updated")
     }
 
     db.collection("users").doc(uid).update({
@@ -54,7 +53,7 @@ export default function ProfileEditForm() {
     })
 
     setLoading(false)
-    //history.push("/MyProfile")
+    history.push("/MyProfile")
 
   }
 
@@ -72,10 +71,11 @@ export default function ProfileEditForm() {
           <Paper elevation={3}>
             <form className={styles.profileCreationForm} onSubmit={UpdateProfile}>
               <TextField
-                required id="standard-required"
-                label={name}
+                required
+                id="standard-required"
+                label="Name"
                 type="text"
-                inputRef={nameRef} required
+                inputRef={nameRef}
               />
               <p />
               <FormControl >

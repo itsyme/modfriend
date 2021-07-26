@@ -29,7 +29,7 @@ export default function ChatTile(props) {
         <Card
         className = {styles.chatTile}
         onClick = {onClickFunction}
-        style = {{backgroundColor: '#4a536b', borderRadius: '10px'}}>
+        style = {{backgroundColor: '#4a536b', borderRadius: '0px 10px 10px 0px'}}>
             <CardActionArea >
                 <Typography gutterBottom variant="h5" component="h2" style = {{color: 'white'}}>
                     {userName}

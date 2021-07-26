@@ -1,10 +1,10 @@
 import logo from '../../modfriend.png';
-import { Box, Button, Select, FormControl, InputLabel, MenuItem, TextField } from "@material-ui/core";
+import { Box, Button, TextField } from "@material-ui/core";
 import styles from "./ModSelect.module.css";
 import { Link, useHistory } from 'react-router-dom';
 import { Alert } from '@material-ui/lab';
 import { firebase } from "@firebase/app"
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 
 function ModSelect() {
   const modulesRef = useRef()
