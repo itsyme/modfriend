@@ -8,26 +8,52 @@ import { useRef, useState } from 'react';
 import Loading from '../Loading/Loading';
 
 function ModSelect() {
-  const modulesRef = useRef()
-  const [error, setError] = useState('')
-  const [loading, setLoading] = useState(false)
-  const [modules, setModules] = useState([])
-  const history = useHistory();
-  const axios = require('axios').default;
+    const modulesRef = useRef()
+    const [error, setError] = useState('')
+    const [loading, setLoading] = useState(false)
+    //const [modules, setModules] = useState([])
+    const history = useHistory();
+  
 
-  async function updateModules(e) {
+    async function updateModules(e) {
+      
+        e.preventDefault()
+    
+        try {
+          setError("")
+          setLoading(true)
+    
+        } catch {
+          setError("modules not updated")
+        } 
+            const arr = modulesRef.current.value.split(" ")
+            //setModules(arr)
 
-    e.preventDefault()
+            const uid = firebase.auth().currentUser?.uid;
+            const db = firebase.firestore();
+            db.collection("users").doc(uid).update({ 
+                modules: arr,
+                availableMods: arr
+            })
 
-    try {
-      setError("")
-      setLoading(true)
+            for (let i = 0; i < arr.length; i++) {
+              var thisMod = arr[i];
+              var dbCollection = db.collection("mods").doc(thisMod);
+              var doc =  await dbCollection.get();
+              if (!doc.exists) {
+                db.collection("mods").doc(thisMod).set({
+                  users: [uid]
+              })
+              } else {
+                dbCollection.update({
+                  users: firebase.firestore.FieldValue.arrayUnion(uid)
+                })
+              }
+            }
 
-    } catch {
-      setError("modules not updated")
-    }
-    const arr = modulesRef.current.value.split(" ")
-    setModules(arr)
+            setLoading(false)
+            history.push("/MyProfile")
+        }
 
     return (
       loading ? <Loading /> :
@@ -46,23 +72,23 @@ function ModSelect() {
           </h1>
           <form className = {styles.moduleBar} 
           onSubmit={updateModules}>
-          {error && <Alert severity="error">{error}</Alert>}
+               {error && <Alert severity="error">{error}</Alert>}
           <TextField
-            required id="standard-required"
-            label="Insert modules"
-            helperText="eg CS1010S CS1101 MA1101R"
-            inputRef={modulesRef} required
-          />
-          <Button variant="contained" style={{ background: "#1D5FB6", color: "white" }}
+          required 
+          id="standard-required" 
+          label="Insert modules"
+          helperText="eg CS1010S CS1101 MA1101R"
+          inputRef={modulesRef} 
+        />
+          <Button variant = "contained" style = {{background: "#1D5FB6", color: "white"}} 
             type="submit">
-            Submit
-          </Button>
-        </form>
-      </center>
-    </div>
+              Submit
+            </Button>
+            </form>
+          </center>
+        </div>
 
-  )
-}
+    )
 }
 
 export default ModSelect;
