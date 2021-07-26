@@ -7,7 +7,7 @@ import { firebase } from "@firebase/app"
 import { useRef, useState } from 'react';
 import Loading from '../Loading/Loading';
 
-export default function ModSelect() {
+function ModSelect() {
   const modulesRef = useRef()
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
@@ -29,79 +29,22 @@ export default function ModSelect() {
     const arr = modulesRef.current.value.split(" ")
     setModules(arr)
 
-    const uid = firebase.auth().currentUser?.uid;
-    const db = firebase.firestore();
-    db.collection("users").doc(uid).update({
-      modules: arr,
-      availableMods: arr
-    })
-
-    for (let i = 0; i < arr.length; i++) {
-      var thisMod = arr[i];
-      var dbCollection = db.collection("mods").doc(thisMod);
-      var doc = await dbCollection.get();
-      if (!doc.exists) {
-        db.collection("mods").doc(thisMod).set({
-          users: [uid]
-        })
-      } else {
-        dbCollection.update({
-          users: firebase.firestore.FieldValue.arrayUnion(uid)
-        })
-      }
-    }
-
-    setLoading(false)
-    history.push("/MyProfile")
-  }
-
-
-  // async function addModules(e) {
-  //   const uid = firebase.auth().currentUser?.uid;
-  //   const db = firebase.firestore();
-  //   const nusmodules = modulesRef.current.value
-  //   let modules = nusmodules.split("&");
-  //   let modulesTaken = [];
-  //   for (let mod of modules) {
-  //     if (mod.includes("?")) {
-  //       mod = mod.split("?");
-  //       mod = mod[1];
-  //     }
-  //     mod = mod.split("=", 1);
-  //     await axios
-  //       .get(`https://api.nusmods.com/v2/2020-2021/modules/${mod}.json`)
-  //       .then(function (response) {
-  //         if (response.status === 200 && !modulesTaken.includes(mod[0])) {
-  //           modulesTaken.push(mod[0]);
-  //         }
-  //       })
-  //       .catch(function (error) {
-  //         console.log(error);
-  //       });
-  //   }
-  //   db.collection("users").doc(uid).update({
-  //     modules: modulesTaken,
-  //     availableMods: modulesTaken
-  //   })
-
-  //   console.log(modulesTaken)
-  // }
-
-  return (
-    <div>
-      <Box className={styles.backButton}>
-        <Button component={Link} to='/ProfileCreation'>
-          Back
-        </Button>
-      </Box>
-      <center>
-        <img src={logo} alt="modFriend logo"
-          height="138" width="375">
-        </img>
-        <h1>
-          Type in your modules!
-        </h1>
-        <form className={styles.moduleBar}
+    return (
+      loading ? <Loading /> :
+        <div>
+            <Box className = {styles.backButton}>
+                <Button component = {Link} to = '/ProfileCreation'>
+                    Back
+                </Button>
+            </Box>  
+            <center>
+          <img src = {logo} alt = "modFriend logo" 
+          height = "138" width = "375">
+          </img>
+          <h1>
+              Type in your modules!
+          </h1>
+          <form className = {styles.moduleBar} 
           onSubmit={updateModules}>
           {error && <Alert severity="error">{error}</Alert>}
           <TextField
@@ -120,4 +63,6 @@ export default function ModSelect() {
 
   )
 }
+}
 
+export default ModSelect;

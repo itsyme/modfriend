@@ -4,7 +4,6 @@ import { useHistory } from 'react-router-dom';
 import { Box, Button, FormControl, InputLabel, Select, MenuItem, Paper, TextField } from '@material-ui/core';
 import styles from "./ProfileEditForm.module.css";
 import Loading from '../Loading/Loading';
-
 import { firebase } from "@firebase/app"
 
 export default function ProfileEditForm() {
