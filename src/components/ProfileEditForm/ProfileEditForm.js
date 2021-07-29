@@ -3,14 +3,12 @@ import React, { useRef, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Box, Button, FormControl, InputLabel, Select, MenuItem, Paper, TextField } from '@material-ui/core';
 import styles from "./ProfileEditForm.module.css";
-import InlineEdit from 'react-edit-inline';
-
 import { firebase } from "@firebase/app"
 
 export default function ProfileEditForm() {
   const nameRef = useRef()
   const history = useHistory();
-  //const [error, setError] = useState('')
+  const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
   const [faculty, setFaculty] = useState("")
   const [year, setYear] = useState("")

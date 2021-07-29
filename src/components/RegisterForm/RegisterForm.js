@@ -20,12 +20,12 @@ export default function RegisterForm() {
     e.preventDefault()
 
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
-      
+
       return setError("Passwords do not match");
-    } 
+    }
 
     if (passwordRef.current.value.length < 6) {
-      
+
       return setError("Password shorter than 6 characters");
     }
 
@@ -35,11 +35,11 @@ export default function RegisterForm() {
       await signup(emailRef.current.value, passwordRef.current.value)
     } catch {
       return setError("Email already in use");
-    } 
+    }
 
     setLoading(false)
     history.push("/ProfileCreation")
-    
+
   }
 
   return (
@@ -47,7 +47,7 @@ export default function RegisterForm() {
       <Box className={styles.backButton}>
         <Button component={Link} to='/'>
           Back to Login
-                  </Button>
+        </Button>
       </Box>
       <center>
         <img src={logo} alt="modFriend logo"
@@ -55,11 +55,11 @@ export default function RegisterForm() {
         </img>
         <h1>
           Sign up here!
-          </h1>
+        </h1>
         <Box display="inline-block">
           <Paper elevation={3}>
-            <form className={styles.registerForm} 
-            onSubmit={handleSubmit} 
+            <form className={styles.registerForm}
+              onSubmit={handleSubmit}
             >
               {error && <Alert severity="error">{error}</Alert>}
               <TextField
@@ -69,14 +69,14 @@ export default function RegisterForm() {
                 inputRef={emailRef} required
               />
               <p />
-              <TextField 
+              <TextField
                 id="password-required"
                 label="Password"
                 type="password"
                 inputRef={passwordRef} required
               />
               <p />
-              <TextField 
+              <TextField
                 id="repassword-required"
                 label="Re-enter Password"
                 type="password"
