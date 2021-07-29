@@ -1,18 +1,11 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import {
-  Avatar, Button, Switch, IconButton, InputLabel, List, ListItem,
-  ListItemSecondaryAction, ListItemText, ListItemAvatar, TextField
+  Avatar, Button, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, InputLabel, List, ListItem,
+  ListItemSecondaryAction, ListItemText, ListItemAvatar, makeStyles, Snackbar, Switch, TextField
 } from "@material-ui/core";
 import { firebase } from "@firebase/app";
 import { Alert } from '@material-ui/lab';
-import DeleteOutlined from '@material-ui/icons/DeleteOutlined'
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import Snackbar from '@material-ui/core/Snackbar';
-import CloseIcon from '@material-ui/icons/Close';
+import { CloseIcon, DeleteOutlined } from '@material-ui/icons/DeleteOutlined'
 import styles from './MatchingLayout.module.css';
 
 const useStyles = makeStyles((theme) => ({
@@ -148,14 +141,14 @@ export default function CheckboxListSecondary() {
         users: firebase.firestore.FieldValue.arrayRemove(uid)
       });
 
-      alert("Matching Complete!")
+      alert("Matching complete for " + thisMod)
     }
 
     if (copyUsers.length === 0) {
-      return setError("no match found please try again later")
+      return setError("no match found for please try again later")
     }
 
-    console.log(error)
+    //console.log(error)
     //history.push("/Chat")
   }
 

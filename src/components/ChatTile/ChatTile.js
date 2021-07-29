@@ -7,11 +7,12 @@ export default function ChatTile(props) {
     const db = firebase.firestore();
     const dbCollection = db.collection("users");
     const uid = props.uid;
-    
-    
+
+
     const [userName, setUserName] = useState("");
     const [userYear, setUserYear] = useState(0);
     const [userFaculty, setUserFaculty] = useState("")
+    const [userModules, setUserModules] = useState("")
     const onClickFunction = () => {
         props.clickFunction(uid, userName);
     }
@@ -21,28 +22,32 @@ export default function ChatTile(props) {
             setUserName(doc.data().name);
             setUserYear(doc.data().year);
             setUserFaculty(doc.data().faculty);
+            setUserModules(doc.data().modules);
         }
     }
     )
 
     return (
         <Card
-        className = {styles.chatTile}
-        onClick = {onClickFunction}
-        style = {{backgroundColor: '#4a536b', borderRadius: '0px 10px 10px 0px'}}>
+            className={styles.chatTile}
+            onClick={onClickFunction}
+            style={{ backgroundColor: '#4a536b', borderRadius: '0px 10px 10px 0px' }}>
             <CardActionArea >
-                <Typography gutterBottom variant="h5" component="h2" style = {{color: 'white'}}>
+                <Typography gutterBottom variant="h5" component="h2" style={{ color: 'white' }}>
                     {userName}
                 </Typography>
-                <Typography variant="body2" color="textSecondary" component="p" style = {{color: 'white'}}>
+                <Typography variant="body2" color="textSecondary" component="p" style={{ color: 'white' }}>
                     {userFaculty}
                 </Typography>
-                <Typography variant="body2" color="textSecondary" component="p" style = {{color: 'white'}}>
-                    {"Year "+userYear}
+                <Typography variant="body2" color="textSecondary" component="p" style={{ color: 'white' }}>
+                    {"Year " + userYear}
+                </Typography>
+                <Typography variant="body2" color="textSecondary" component="p" style={{ color: 'white' }}>
+                    {"Modules " + userModules}
                 </Typography>
 
             </CardActionArea>
-            
+
         </Card>
     )
 
