@@ -3,22 +3,29 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin-left: 42vw;
+    margin-left: auto;
+    margin-right: auto;
     margin-bottom: 10px;
-    padding-left: 4vw;
+    padding-left: 10vw;
+    padding-right: 10vw;
     padding-top: 20px;
     padding-bottom: 20px;
+    width: fit-content;
 }
 
 .label {
-    background-color: #4a536b;
+    background: linear-gradient(rgba(74, 83, 107, 0.8), rgba(74, 83, 107, 0.8));
     color: white;
     width: fit-content;
     padding: 1px;
-    padding-left: 44vw;
-    padding-right: 15px;
+    padding-left: 5vw;
+    padding-right: 5vw;
     margin-top: 20px;
-    border-radius: 0px 38px 38px 0px;
+    border-radius: 70px 70px 20px 70px;
     padding-top: 10px;
     padding-bottom: 10px;
+}
+
+.font {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }

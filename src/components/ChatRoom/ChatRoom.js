@@ -14,11 +14,16 @@ export default function ChatRoom(props) {
     const docRef1 = firestore.collection('messages').doc(uidcombined1);
     const docRef2 = firestore.collection('messages').doc(uidcombined2);
 
+    
     docRef1.get().then((doc) => {
-        if (doc.exists) return;
+        if (doc.exists) {
+            return;
+        }
 
         docRef2.get().then((doc2) => {
-            if (doc2.exists) return;
+            if (doc2.exists) {
+                return;
+            }
 
             docRef2.set({
                 room: true,
@@ -33,8 +38,9 @@ export default function ChatRoom(props) {
         return;
     })
     
+    
 
-    const query = messagesRef.orderBy('createdAt').limit(25);
+    const query = messagesRef.orderBy('createdAt');
     const [messages] = useCollectionData(query, {idField: 'id'});
     const [formValue, setFormValue] = useState('');
     
@@ -57,9 +63,8 @@ export default function ChatRoom(props) {
 
 
     return (
-        <>
         <div>
-            <div> 
+            <div className = {styles.chatRoom}> 
                 {messages && messages.map(msg => <ChatMessage key = {msg.id} message = {msg} />)}
                 <div ref = {dummy}></div>
             </div>
@@ -70,7 +75,7 @@ export default function ChatRoom(props) {
                 </button>
             </form>
         </div>
-        </>
+        
     )
 }
 

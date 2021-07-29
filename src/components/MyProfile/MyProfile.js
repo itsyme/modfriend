@@ -31,15 +31,17 @@ function MyProfile() {
 
     return (
         <>
+        <center>   
         <div className = {styles.label}>
-        <h1>
+        <h1 className = {styles.font}>
             Your Profile
         </h1>
         </div>
-            <Paper elevation = {3} className = {styles.profileData} style = {{backgroundColor: '#4a536b',
+        </center>
+            <Paper elevation = {3} className = {styles.profileData} style = {{background: 'linear-gradient(rgba(74, 83, 107, 0.8), rgba(74, 83, 107, 0.6))',
              color: 'white',
-             borderRadius: '80px 0px 0px 80px'}}>
-                <div>
+             borderRadius: '70px 70px 70px 20px'}}>
+                <div className = {styles.font}>
                 
                 <h3>
                     Name: {name}

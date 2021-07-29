@@ -45,7 +45,7 @@ export default function RegisterForm() {
   return (
     <div>
       <Box className={styles.backButton}>
-        <Button component={Link} to='/'>
+        <Button component={Link} to='/' style = {{color: 'white'}}>
           Back to Login
         </Button>
       </Box>
@@ -53,7 +53,7 @@ export default function RegisterForm() {
         <img src={logo} alt="modFriend logo"
           height="138" width="375">
         </img>
-        <h1>
+        <h1 className = {styles.white}>
           Sign up here!
         </h1>
         <Box display="inline-block">

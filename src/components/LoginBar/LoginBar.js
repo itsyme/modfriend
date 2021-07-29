@@ -12,14 +12,12 @@ export default function LoginBar() {
   const passwordRef = useRef()
   const { login } = useAuth()
   const [error, setError] = useState("")
-  const [loading, setLoading] = useState(false)
 
   async function handleSubmit(e) {
   e.preventDefault()
 
     try {
       setError("")
-      setLoading(true)
       await login(emailRef.current.value, passwordRef.current.value)
     } catch {
       return setError("Failed to log in")
@@ -28,7 +26,6 @@ export default function LoginBar() {
     console.log("successful login")
     history.push("/Home")
     
-    setLoading(false)
     //setError("no error")
     history.push('/MyProfile')
   }
@@ -39,6 +36,7 @@ export default function LoginBar() {
           <img src = {logo} alt = "modFriend logo" 
           height = "138" width = "375">
           </img>
+        <div className = {styles.box}>  
         <h1 className = {styles.textStyle}>
           Welcome to modFriend!
         </h1>
@@ -78,10 +76,11 @@ export default function LoginBar() {
         </Box>
         
         <p>
-          <Button component = {Link} to="/Register">
+          <Button component = {Link} to="/Register" style = {{color: "white"}}>
            Sign up!
           </Button>
         </p>
+        </div>
         
         </center>
     </div>

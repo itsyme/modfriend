@@ -7,5 +7,9 @@
 }
 
 .backButton {
-    padding: 10px
+    padding: 10px;
+}
+
+.white {
+    color: white;
 }

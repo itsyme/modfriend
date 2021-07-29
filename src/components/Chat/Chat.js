@@ -54,10 +54,10 @@ for (let i = 0; i < friend.length; i++) {
       </div>
         <div className = {styles.row}>
           <div>
-            {matches.length > 0 ? matches : <h3>No matches found</h3>}
+            {matches.length > 0 ? matches : <h3 className = {styles.white}>No matches found</h3>}
           </div>
           <div  className = {styles.chatRoom}>
-            {chatUid === "" ? <h3>Click on a match!</h3> : <ChatRoom otherUid = {chatUid} />}
+            {chatUid === "" ? <h3 className = {styles.white}>Click on a match!</h3> : <ChatRoom otherUid = {chatUid} />}
           </div>
         </div>
       </>

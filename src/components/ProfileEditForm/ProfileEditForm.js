@@ -12,17 +12,6 @@ export default function ProfileEditForm() {
   const [loading, setLoading] = useState(false)
   const [faculty, setFaculty] = useState("")
   const [year, setYear] = useState("")
-  const [name, setName] = useState("")
-  const uid = firebase.auth().currentUser?.uid;
-  const db = firebase.firestore();
-
-  const docRef = db.collection("users").doc(uid);
-
-  docRef.get().then((doc) => {
-    if (doc.exists) {
-      setName(doc.data().name);
-    }
-  })
 
   const handleYear = (event) => {
     setYear(event.target.value);
@@ -32,17 +21,18 @@ export default function ProfileEditForm() {
     setFaculty(event.target.value);
   };
 
-  async function UpdateProfile(e) {
+
+  async function CreateProfile(e) {
     e.preventDefault()
 
     try {
       //setError("")
-      setLoading(true)
 
     } catch {
-      setError("profile not updated")
+      //setError("profile not created")
     }
-
+    const uid = firebase.auth().currentUser?.uid;
+    const db = firebase.firestore();
     db.collection("users").doc(uid).update({
       faculty: faculty,
       name: nameRef.current.value,
@@ -50,7 +40,6 @@ export default function ProfileEditForm() {
       availableMods: []
     })
 
-    setLoading(false)
     history.push("/MyProfile")
 
   }
@@ -62,12 +51,12 @@ export default function ProfileEditForm() {
         <img src={logo} alt="modFriend logo"
           height="138" width="375">
         </img>
-        <h1>
+        <h1 className={styles.white}>
           Edit Your Profile
         </h1>
         <Box display="inline-block">
           <Paper elevation={3}>
-            <form className={styles.profileCreationForm} onSubmit={UpdateProfile}>
+            <form className={styles.profileCreationForm} onSubmit={CreateProfile}>
               <TextField
                 required
                 id="standard-required"

@@ -15,7 +15,7 @@ import AppShell from "./components/AppShell/AppShell";
 import AppShellUnauthed from './components/AppShellUnauthed';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import {auth} from './config/firebase';
-import Background from './background.png';
+import Background from './background.jpeg';
 
 function App() {
   const [user] = useAuthState(auth);
