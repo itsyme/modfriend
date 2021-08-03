@@ -8,8 +8,8 @@ import { firebase } from "@firebase/app"
 export default function ProfileEditForm() {
   const nameRef = useRef()
   const history = useHistory();
-  const [error, setError] = useState('')
-  const [loading, setLoading] = useState(false)
+  //const [error, setError] = useState('')
+  //const [loading, setLoading] = useState(false)
   const [faculty, setFaculty] = useState("")
   const [year, setYear] = useState("")
 
