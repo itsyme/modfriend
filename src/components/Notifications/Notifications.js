@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
@@ -34,7 +34,6 @@ const useStyles = makeStyles({
 export default function SimpleCard() {
     const classes = useStyles();
     const [newFriendID, setNewFriendID] = useState([])
-    const [error, setError] = useState('')
 
     const fetchNotifications = async () => {
         const uid = firebase.auth().currentUser?.uid;
@@ -48,10 +47,7 @@ export default function SimpleCard() {
                 // doc.data() will be undefined in this case
                 console.log("No such document!", uid);
             }
-        }).catch((error) => {
-            setError(error);
-            console.log("Error getting document:", error);
-        });
+        })
     }
     useEffect(() => {
         fetchNotifications();
