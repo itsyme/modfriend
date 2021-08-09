@@ -39,7 +39,8 @@ export default function ProfileCreationForm() {
       year: year,
       modules: [],
       matches: [],
-      availableMods: []
+      availableMods: [],
+      newFriend: []
     })
 
     console.log(faculty)

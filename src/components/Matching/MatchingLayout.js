@@ -141,8 +141,10 @@ export default function CheckboxListSecondary() {
 
       allUsers.doc(result).update({
         matches: firebase.firestore.FieldValue.arrayUnion(uid),
-        //availability: false
+        newFriend: firebase.firestore.FieldValue.arrayUnion(uid)
       })
+
+      //setNewFriend(uid);
 
       db.collection('mods').doc(thisMod).update({
         users: firebase.firestore.FieldValue.arrayRemove(uid)
